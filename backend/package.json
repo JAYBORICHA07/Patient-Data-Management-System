@@ -1,0 +1,15 @@
+{
+  "name": "patient-data-management-system",
+  "version": "1.0.0",
+  "description": "a patient data management syste",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jay Boricha",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon" : "^3.0.3"
+  }
+}
