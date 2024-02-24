@@ -26,7 +26,7 @@ function SignUp() {
 
   return (
     <div className="grid grid-cols-2">
-      <div className="container py-4 w-fit h-fit border-2  mt-4 rounded-lg border-blue-400">
+      <div className="container py-4 w-fit h-fit border-2  mt-24 rounded-lg border-blue-400">
         <h1 className=" text-center mt-0 font-semibold text-5xl h-20 rounded-lg sm:texl-4xl border-b-2 border-double border-blue-400  text-blue-500">
           SignUp
         </h1>
@@ -104,7 +104,7 @@ function SignUp() {
           </div>
         </div>
       </div>
-      <div className="hidden  mt-4 py-4 h-[500px] w-[600px] sm:flex justify-center items-center">
+      <div className="hidden  mt-28 py-4 h-[500px] w-[600px] sm:flex justify-center items-center">
         <img
           src="../../../public/signup1.svg"
           alt="img"
