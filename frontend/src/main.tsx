@@ -5,6 +5,8 @@ import "./index.css";
 import { ThemeProvider } from "./components/theme-provider.tsx";
 import Homepage from "./pages/Homepage.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import Login from "./pages/Auth/Login.tsx";
+import SignUp from "./pages/Auth/SignUp.tsx";
 
 
 const router = createBrowserRouter([
@@ -12,6 +14,14 @@ const router = createBrowserRouter([
     path : '/',
     element : <Homepage />,
     errorElement : <ErrorPage />
+  },
+  {
+    path: '/login',
+    element:<Login/>
+  },
+  {
+    path: '/signup',
+    element:<SignUp/>
   }
 ])
 
