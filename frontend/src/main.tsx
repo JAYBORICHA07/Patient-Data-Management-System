@@ -10,6 +10,8 @@ import Login from "./pages/Auth/Login.tsx";
 import SignUp from "./pages/Auth/SignUp.tsx";
 import ContactUs from "./pages/ContactUs.tsx";
 import Footer from "./components/Footer.tsx";
+import AboutUS from "./pages/AboutUS.tsx";
+
 
 const router = createBrowserRouter([
   {
@@ -26,10 +28,15 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: "/contactus",
-    element: <ContactUs />,
+
+    path:'/contactus',
+    element:<ContactUs/>
   },
-]);
+  {
+    path:'/about',
+    element:<AboutUS/>
+  }
+])
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

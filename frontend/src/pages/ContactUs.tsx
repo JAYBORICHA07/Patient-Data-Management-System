@@ -33,6 +33,7 @@ function ContactUs() {
           </h1>
         </div>
         <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:text-[#2463eb] hover:scale-105 transition-transform duration-300 ease-in-out">
+
           <MapPinned className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
             <p className="font-bold text-lg">Address</p>
@@ -40,6 +41,7 @@ function ContactUs() {
           </div>
 
         </div>
+
         <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:text-[#2463eb] hover:scale-105 transition-transform duration-300 ease-in-out">
           <Headset className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
@@ -47,6 +49,7 @@ function ContactUs() {
             <p className=" font-light text-base">Number</p>
           </div>
         </div>
+
         <div className="border rounded-lg p-6 m-3  flex flex-ro3 bg-blue-50 hover:text-[#2463eb] hover:scale-105 transition-transform duration-300 ease-in-out">
           <Mail className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
