@@ -4,7 +4,7 @@ import { Mail } from "lucide-react";
 const Footer = () => {
   return (
     <div className="flex flex-col justify-between md:flex-row bg-[#f3f6f8] p-3">
-      <div className="h-auto w-[20%] flex flex-col gap-3">
+      <div className="h-auto justify-center items-center sm:w-[20%] flex sm:flex-col gap-3">
         <div className="flex justify-start items-center gap-3 m-5">
           <img
             src="../../vite.svg"
