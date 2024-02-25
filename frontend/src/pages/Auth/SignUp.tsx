@@ -105,7 +105,7 @@ function SignUp() {
       </div>
       <div className="hidden  mt-16 py-4 h-[73%] w-[96%] sm:flex justify-center items-center">
         <img
-          src="../../../public/signup1.svg"
+          src="../../../signup1.svg"
           alt="img"
           className=""
         />
