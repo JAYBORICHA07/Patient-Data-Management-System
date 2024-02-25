@@ -5,7 +5,7 @@ function AboutUS() {
     <div>
         <div className="grid grid-cols-1 md:grid-cols-2 m-2 mt-2">
             <div className="block p-2 w-auto my-3">
-                <img src='../../public/Evolution of Healthcare Mobility Solutions Market _ Global Industry Forecast, 2019-2025.jfif' className="rounded-lg" alt="img1"></img>
+                <img src='../../Evolution of Healthcare Mobility Solutions Market _ Global Industry Forecast, 2019-2025.jfif' className="rounded-lg" alt="img1"></img>
             </div>
             <div className="m-5 px-5">
                 <h1 className="text-4xl py-3 md:text-6xl">About Website</h1>

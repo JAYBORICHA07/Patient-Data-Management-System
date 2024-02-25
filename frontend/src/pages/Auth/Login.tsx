@@ -30,7 +30,7 @@ function Login() {
   return (
     <div className="grid grid-cols-2 items-center justify-center">
       <div className="hidden sm:block mt-20">
-        <img src="../../../public/content-creation-isometric.png" alt="img" className=""/>
+        <img src="../../../content-creation-isometric.png" alt="img" className=""/>
       </div>
       <div className="container p-10 w-fit h-fit border-2 mt-22 rounded-xl border-blue-400 shadow-2xl">
         <h1 className=" text-center mt-4 font-semibold text-5xl sm:texl-4xl text-blue-500  border-b-2   border-double border-blue-400 rounded-lg h-20">
