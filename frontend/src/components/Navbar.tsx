@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Separator } from "./ui/separator";
+// import { Separator } from "./ui/separator";
 
 const Navbar = () => {
   return (
