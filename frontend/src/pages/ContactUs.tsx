@@ -32,7 +32,7 @@ function ContactUs() {
             How Can I Help You?
           </h1>
         </div>
-        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50">
+        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:bg-blue-100 cursor-pointer">
           <MapPinned className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
             <p className="font-bold text-lg">Address</p>
@@ -40,14 +40,14 @@ function ContactUs() {
           </div>
 
         </div>
-        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50">
+        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:bg-blue-100 cursor-pointer">
           <Headset className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
             <p className="font-bold text-lg">Contact me</p>
             <p className=" font-light text-base">Number</p>
           </div>
         </div>
-        <div className="border rounded-lg p-6 m-3  flex flex-ro3 bg-blue-50">
+        <div className="border rounded-lg p-6 m-3  flex flex-ro3 bg-blue-50 hover:bg-blue-100 cursor-pointer">
           <Mail className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
             <p className="font-bold text-lg">Email</p>
