@@ -20,12 +20,9 @@ function SignUp() {
         pwd: '',
         confirmpwd: ''
     })
-
     const handleSignUp=()=>{
       console.log(user)
   }
-
-
   return (
     <div className="grid grid-cols-2">
       <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-6 rounded-lg border-blue-400">

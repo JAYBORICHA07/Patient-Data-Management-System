@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-// import { Separator } from "./ui/separator";
+import { Separator } from "./ui/separator";
 
 const Navbar = () => {
   return (
@@ -31,7 +31,6 @@ const Navbar = () => {
           </Button>
           <Button variant={"ghost"}>
             <a href="/contactus">Contact Us</a>
-
           </Button>
           <Button variant={"outline"}>
             <a

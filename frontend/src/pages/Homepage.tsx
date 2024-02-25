@@ -1,12 +1,7 @@
 import ContactUs from "./ContactUs";
 
 const Homepage = () => {
-  return( 
-  
-  <div>
-    HomePage
-  </div>
-  )
+  return <div>HomePage</div>;
 };
 
-export default Homepage
+export default Homepage;
