@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar.tsx";
 import Login from "./pages/Auth/Login.tsx";
 import SignUp from "./pages/Auth/SignUp.tsx";
 import ContactUs from "./pages/ContactUs.tsx";
+import AboutUS from "./pages/AboutUS.tsx";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path:'/contactus',
     element:<ContactUs/>
+  },
+  {
+    path:'/about',
+    element:<AboutUS/>
   }
 ])
 
