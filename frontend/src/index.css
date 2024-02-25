@@ -34,6 +34,10 @@
  
     --radius: 0.5rem;
   }
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
  
   .dark {
     --background: 222.2 84% 4.9%;

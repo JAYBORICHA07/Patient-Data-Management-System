@@ -8,12 +8,13 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 import Navbar from "./components/Navbar.tsx";
 import Login from "./pages/Auth/Login.tsx";
 import SignUp from "./pages/Auth/SignUp.tsx";
+import ContactUs from "./pages/ContactUs.tsx";
 
 
 const router = createBrowserRouter([
   {
     path : '/',
-    element : <Homepage />,
+    element : <Homepage/>,
     errorElement : <ErrorPage />
   },
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element:<SignUp/>
+  },
+  {
+    path:'/contactus',
+    element:<ContactUs/>
   }
 ])
 
