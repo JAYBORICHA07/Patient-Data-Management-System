@@ -9,24 +9,26 @@ import Navbar from "./components/Navbar.tsx";
 import Login from "./pages/Auth/Login.tsx";
 import SignUp from "./pages/Auth/SignUp.tsx";
 import ContactUs from "./pages/ContactUs.tsx";
+import Footer from "./components/Footer.tsx";
 import AboutUS from "./pages/AboutUS.tsx";
 
 
 const router = createBrowserRouter([
   {
-    path : '/',
-    element : <Homepage/>,
-    errorElement : <ErrorPage />
+    path: "/",
+    element: <Homepage />,
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/login',
-    element:<Login/>
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: '/register',
-    element:<SignUp/>
+    path: "/register",
+    element: <SignUp />,
   },
   {
+
     path:'/contactus',
     element:<ContactUs/>
   },
@@ -39,9 +41,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <div className="mx-5">
+      <div className="mx-5 flex justify-between flex-col h-screen">
         <Navbar />
         <RouterProvider router={router} />
+        <Footer />
       </div>
     </ThemeProvider>
   </React.StrictMode>

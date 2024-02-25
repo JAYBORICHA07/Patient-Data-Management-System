@@ -28,11 +28,12 @@ function ContactUs() {
     <div className="grid grid-cols-1 mt-2 md:grid-cols-2 m-2">
       <div className="flex flex-col m-3 w-full">
         <div className="p-5 m-2">
-          <h1 className="text-4xl font-bold">
-            How Can I Help You?
+          <h1 className="text-4xl font-bold text-[#2463eb]">
+            How Can We Help You ?
           </h1>
         </div>
-        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:bg-blue-100 cursor-pointer">
+        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:text-[#2463eb] hover:scale-105 transition-transform duration-300 ease-in-out">
+
           <MapPinned className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
             <p className="font-bold text-lg">Address</p>
@@ -40,14 +41,16 @@ function ContactUs() {
           </div>
 
         </div>
-        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:bg-blue-100 cursor-pointer">
+
+        <div className="border rounded-lg p-6 m-3  flex flex-row bg-blue-50 hover:text-[#2463eb] hover:scale-105 transition-transform duration-300 ease-in-out">
           <Headset className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
             <p className="font-bold text-lg">Contact me</p>
             <p className=" font-light text-base">Number</p>
           </div>
         </div>
-        <div className="border rounded-lg p-6 m-3  flex flex-ro3 bg-blue-50 hover:bg-blue-100 cursor-pointer">
+
+        <div className="border rounded-lg p-6 m-3  flex flex-ro3 bg-blue-50 hover:text-[#2463eb] hover:scale-105 transition-transform duration-300 ease-in-out">
           <Mail className=" text-base w-10 h-10 mx-10" />
           <div className="flex flex-col">
             <p className="font-bold text-lg">Email</p>

@@ -13,10 +13,10 @@ import { Separator } from "./ui/separator";
 const Navbar = () => {
   return (
     <>
-      <div className="w-full p-4 m-0 h-16 sm:flex justify-between items-center hidden">
+      <div className="w-full p-4 m-0 h-16 sm:flex justify-between items-center hidden bg-[#f3f6f8]">
         <div className="flex justify-start items-center gap-3">
           <img
-            src="../../public/vite.svg"
+            src="../../vite.svg"
             alt="CompanyLogo"
             className="h-16 md:h-14"
           />
@@ -50,7 +50,7 @@ const Navbar = () => {
           </Button>
         </div>
       </div>
-      <div className="flex p-4 m-0 justify-end items-center sm:hidden">
+      <div className="flex p-4 m-0 justify-end items-center sm:hidden bg-[#f3f6f8]">
         <Sheet>
           <SheetTrigger asChild>
             <Button>Menu</Button>
