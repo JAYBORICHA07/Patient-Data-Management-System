@@ -1,28 +1,70 @@
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+// import { supabase } from "@/utils/supabase";
+import {
+  SubmitHandler,
+  useForm,
+  Controller,
+  useController,
+} from "react-hook-form";
 
 function SignUp() {
+  const roles = ["PATIENT", "DOCTOR", "MANAGEMENT"] as const;
+  type Role = (typeof roles)[number];
 
-    type userType = {
-        name: string,
-        email: string,
-        mobileNumber: number | null,
-        pwd: string,
-        confirmpwd: string
-    }
+  type UserType = {
+    name: string;
+    email: string;
+    phoneNumber: number | null;
+    password: string;
+    role: Role;
+  };
 
-    const [user, setUser] = useState<userType>({
-        name: '',
-        email: '',
-        mobileNumber: null,
-        pwd: '',
-        confirmpwd: ''
-    })
-    const handleSignUp=()=>{
-      console.log(user)
-  }
+  const {
+    register,
+    handleSubmit,
+    control,
+  } = useForm<UserType>();
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { field } = useController({
+    name: "role",
+    control,
+  });
+
+  const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
+    console.log(data)
+  };
+  const onError = (errors: unknown) => console.log(errors);
+
+  // const handleSignUp = async () => {
+  //   const { data, error } = await supabase
+  //     .from("users")
+  //     .insert({
+  //       name: user.name,
+  //       email : user.email,
+  //       phoneNumber : user.mobileNumber,
+  //       role: user.role,
+  //       password : user.password
+  //     })
+  //     .select();
+  //     if(error){
+  //       alert(error.message)
+  //     }else{
+  //       console.log(data)
+  //     }
+  // };
+
   return (
     <div className="grid grid-cols-2">
       <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-6 rounded-lg border-blue-400">
@@ -30,7 +72,7 @@ function SignUp() {
           SignUp
         </h1>
         <div className="flex flex-col gap-2 ">
-          <div className="text-center mt-2 block h-fit w-80">
+          <form className="text-center mt-2 block h-fit w-80">
             <div>
               <Label className="block text-sm md:text-sm text-left font-semibold">
                 User name
@@ -40,7 +82,8 @@ function SignUp() {
                 className="p-2 mt-2 border-2 bg-blue-50  md:p-1"
                 placeholder="Enter name"
                 required
-                onChange={(e) => setUser({ ...user, name: e.target.value })}
+                // onChange={(e) => setUser({ ...user, name: e.target.value })}
+                {...register("name", { required: true })}
               />
             </div>
             <div>
@@ -52,7 +95,7 @@ function SignUp() {
                 className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
                 placeholder="Enter Email"
                 required
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                {...register("email", { required: true })}
               />
             </div>
             <div>
@@ -64,9 +107,30 @@ function SignUp() {
                 className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
                 placeholder="Enter mobile number"
                 required
-                onChange={(e) =>
-                  setUser({ ...user, mobileNumber: Number(e.target.value) })
-                }
+                {...register("phoneNumber", { required: true })}
+              />
+            </div>
+            <div className="text-center block">
+              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
+                Select Role
+              </Label>
+              <Controller
+                name="role"
+                control={control}
+                render={({ field }) => (
+                  <Select {...field} onValueChange={field.onChange}>
+                    <SelectTrigger className="bg-blue-50 p-2 mt-2 border-2 md:p-1">
+                      <SelectValue placeholder="Select Role" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="PATIENT">Patient</SelectItem>
+                        <Separator className="my-2" />
+                        <SelectItem value="DOCTOR">Doctor</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
               />
             </div>
             <div className="text-center  block">
@@ -78,40 +142,26 @@ function SignUp() {
                 className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
                 placeholder="Enter password"
                 required
-                onChange={(e) => setUser({ ...user, pwd: e.target.value })}
-              />
-            </div>
-            <div className="text-center block">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
-                Confirm Password
-              </Label>
-              <Input
-                type="text"
-                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
-                placeholder="Enter password"
-                required
-                onChange={(e) =>
-                  setUser({ ...user, confirmpwd: e.target.value })
-                }
+                {...register("password", { required: true })}
               />
             </div>
             <div className="block text-center mt-3 hover:text-blue-400">
-              <Button className=" p-6 text-xl w-full mb-2" onClick={handleSignUp}>
+              <Button
+                className=" p-6 text-xl w-full mb-2"
+                type="submit"
+                onClick={handleSubmit(onSubmit, onError)}
+              >
                 SignUp
               </Button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div className="hidden  mt-16 py-4 h-[73%] w-[96%] sm:flex justify-center items-center">
-        <img
-          src="../../../signup1.svg"
-          alt="img"
-          className=""
-        />
+        <img src="../../../signup1.svg" alt="img" className="" />
       </div>
     </div>
   );
 }
 
-export default SignUp
+export default SignUp;
