@@ -140,7 +140,7 @@ function SignUp() {
                 Password
               </Label>
               <Input
-                type="text"
+                type="password"
                 className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
                 placeholder="Enter password"
                 required

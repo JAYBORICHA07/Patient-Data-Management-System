@@ -12,7 +12,7 @@ function ContactUs() {
     service: string;
     phoneNo: number | null;
     message: string
-  }
+  } 
   const [user, setUser] = useState<userType>({
     name: '',
     email: '',

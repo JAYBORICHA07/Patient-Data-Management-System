@@ -11,6 +11,8 @@ import SignUp from "./pages/Auth/SignUp.tsx";
 import ContactUs from "./pages/ContactUs.tsx";
 import Footer from "./components/Footer.tsx";
 import AboutUS from "./pages/AboutUS.tsx";
+import DoctorProfile from "./pages/DoctorProfile.tsx";
+import PatientProfile from "./pages/PatientProfile.tsx";
 
 
 const router = createBrowserRouter([
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
   {
     path:'/about',
     element:<AboutUS/>
+  },
+  {
+    path:'/doctorprofile',
+    element:<DoctorProfile/>
+  },
+  {
+    path:'/patientprofile',
+    element:<PatientProfile/>
   }
 ])
 
