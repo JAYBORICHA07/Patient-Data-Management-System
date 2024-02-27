@@ -13,6 +13,7 @@ import Footer from "./components/Footer.tsx";
 import AboutUS from "./pages/AboutUS.tsx";
 import DoctorProfile from "./pages/DoctorProfile.tsx";
 import PatientProfile from "./pages/PatientProfile.tsx";
+import Appointment from "./pages/Appointment.tsx";
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path:'/patientprofile',
     element:<PatientProfile/>
+  },
+  {
+    path:'/appointment',
+    element:<Appointment/>
   }
 ])
 
