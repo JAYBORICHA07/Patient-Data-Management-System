@@ -36,16 +36,35 @@ function DoctorProfile() {
 
     return (
         <div>
-            <div className="grid md:grid-cols-2 grid-cols-1 border border-r-2 rounded-lg p-2 m-3">
-                <div className=" border border-r-2 rounded-lg m-2 w-fit row-span-1">
-                Doctor photo || doctor information
-                    <div className="border border-r-2 rounded-lg m-5">Photo</div>
-                    <div className="">
+            <div className="flex flex-col md:flex-row rounded-lg p-2">
+                <div className=" ml-5 border border-r-2 rounded-lg m-2 w-80 row-span-1 mx-10 mt-5">
+                    <div className=" m-10 px-5 flex justify-center ">
+                        <img src="../../public/profile.jfif" alt="profile image"></img>
+                    </div>
+                    <div className="flex justify-center ">
+                    <Button className="" variant={"outline"}>
+                    <a
+                    href="upload"
+                    className=" container"
+                    >
+                    Upload Photo
+                    </a>
+                    </Button>
+                    </div>
+                    <div className="mt-3">
                     {/* This information whose change is not required for ui purpose only*/}
+                    <h1 className="text-center text-2xl md:text-3xl ">Dr Name</h1>
+                    <h1 className="text-center text-xl">Specialization</h1>
+                    <h1 className="text-center text-xl">Registartion Number</h1>
+                    <h1 className="text-center text-xl">Registration Year</h1>
+                    
                     </div>
                 </div>
-                <div className="">
-                    <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-2">
+                <div className="px-2 mx-5">
+                    <div className="flex py-1 mt-2 ">
+                    <h1 className="text-xl lg:text-5xl font-semibold border-b-4 pb-2  border-blue-500 pt-10 md:pt-2 pr-12 mx-32 ml-0 pl-0  ">Doctor Basic Information</h1>
+                    </div>
+                    <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-5 mr-3.5">
                         <div>
                         <Label className="">Email</Label>
                             <Input
@@ -168,7 +187,7 @@ function DoctorProfile() {
                             />
                         </div>
                     </div>
-                    <div>
+                    <div className=" mr-3.5">
                         <Label className="">Services</Label>
                         <Input
                             type="text"
