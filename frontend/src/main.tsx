@@ -14,6 +14,7 @@ import AboutUS from "./pages/AboutUS.tsx";
 import DoctorProfile from "./pages/DoctorProfile.tsx";
 import PatientProfile from "./pages/PatientProfile.tsx";
 import Appointment from "./pages/Appointment.tsx";
+import AppointmentList from "./pages/AppointmentList.tsx";
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path:'/appointment',
     element:<Appointment/>
+  },
+  {
+    path:'/appointmentlist',
+    element:<AppointmentList/>
   }
 ])
 
