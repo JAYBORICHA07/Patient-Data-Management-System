@@ -18,6 +18,7 @@ import {
   Controller,
   useController,
 } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const roles = ["PATIENT", "DOCTOR", "MANAGEMENT"] as const;
@@ -43,9 +44,22 @@ function SignUp() {
     name: "role",
     control,
   });
-
+  const navigate = useNavigate()
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
     console.log(data)
+    let result = await fetch('http://localhost:8000/api/v1/users/register',{
+      method:'post',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type':'application/json'
+      }
+    })
+    result = await result.json()
+    console.log(result)
+    localStorage.setItem('user',JSON.stringify(result))
+    navigate('/')
+
+
   };
   const onError = (errors: unknown) => console.log(errors);
 
