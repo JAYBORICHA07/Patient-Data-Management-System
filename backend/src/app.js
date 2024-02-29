@@ -1,6 +1,7 @@
 import express from "express"
 import cors from  "cors"
 import cookieParser from "cookie-parser"
+import authMiddleware from "./middleware/auth.js"
 
 const app = express()
 
@@ -23,8 +24,8 @@ import appointmentRouter from './routes/appointment.route.js'
 
 //routes declaration
 app.use("/api/v1/users", userRouter)
-app.use("/api/v1/patient", patientRouter)
-app.use("/api/v1/doctor", doctorRouter)
+app.use("/api/v1/patient", authMiddleware, patientRouter)
+app.use("/api/v1/doctor", authMiddleware, doctorRouter)
 app.use("/api/v1/appointment", appointmentRouter)
 
 
