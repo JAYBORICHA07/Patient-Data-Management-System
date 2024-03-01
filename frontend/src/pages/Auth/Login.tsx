@@ -16,7 +16,7 @@ function Login() {
     email: string;
     password: string;
   };
-
+  
   const {
     register,
     handleSubmit,
@@ -31,6 +31,7 @@ function Login() {
   })
 
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
+
     const result  = await axios.post("http://localhost:8000/api/v1/users/login", data)
     if(result?.data?.success){
       localStorage.setItem('user', JSON.stringify(result.data))
@@ -40,11 +41,9 @@ function Login() {
     }
   };
   const onError = (errors: unknown) => console.log(errors);
-
- 
-  
+      
   return (
-    <div className="grid grid-cols-2 items-center justify-center">
+    <div className="grid md:grid-cols-2 container items-center justify-center">
       <div className="hidden sm:block mt-20">
         <img
           src="../../../content-creation-isometric.png"

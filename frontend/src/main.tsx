@@ -16,9 +16,15 @@ import PatientProfile from "./pages/PatientProfile.tsx";
 import Appointment from "./pages/Appointment.tsx";
 import AppointmentList from "./pages/AppointmentList.tsx";
 import AppointmentUpdate from "./pages/AppointmentUpdate.tsx";
+import ChangePassword from "./pages/Auth/ChangePassword.tsx";
 
 
 const router = createBrowserRouter([
+  {
+    path: "/home",
+    element: <Homepage />,
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/",
     element: <Homepage />,
@@ -60,6 +66,10 @@ const router = createBrowserRouter([
   {
     path:'/appointmentupdate',
     element:<AppointmentUpdate/>
+  },
+  {
+    path:'/changepassword',
+    element:<ChangePassword/>
   }
 ])
 
