@@ -57,32 +57,11 @@ function SignUp() {
     result = await result.json()
     console.log(result)
     localStorage.setItem('user',JSON.stringify(result))
-    navigate('/')
-
-
+    navigate('/patientprofile')
   };
   const onError = (errors: unknown) => console.log(errors);
-
-  // const handleSignUp = async () => {
-  //   const { data, error } = await supabase
-  //     .from("users")
-  //     .insert({
-  //       name: user.name,
-  //       email : user.email,
-  //       phoneNumber : user.mobileNumber,
-  //       role: user.role,
-  //       password : user.password
-  //     })
-  //     .select();
-  //     if(error){
-  //       alert(error.message)
-  //     }else{
-  //       console.log(data)
-  //     }
-  // };
-
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 container">
       <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-6 rounded-lg border-blue-400">
         <h1 className=" text-center mt-0 font-semibold text-5xl h-16 rounded-lg sm:texl-4xl border-b-2 border-double border-blue-400  text-blue-500">
           SignUp
@@ -119,7 +98,7 @@ function SignUp() {
                 Mo. Number
               </Label>
               <Input
-                type="number"
+                type="text"
                 className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
                 placeholder="Enter mobile number"
                 required

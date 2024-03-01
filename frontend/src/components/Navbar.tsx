@@ -32,6 +32,7 @@ const Navbar = () => {
           <Button variant={"ghost"}>
             <a href="/contactus">Contact Us</a>
           </Button>
+          { 
           <Button variant={"outline"}>
             <a
               href="register"
@@ -40,14 +41,15 @@ const Navbar = () => {
               <UserRoundPlus size={"18px"} />
               Register
             </a>
-          </Button>
+          </Button>}
+          {
           <Button>
             <a href="/login" className="flex justify-center items-center gap-2">
               {" "}
               <LogInIcon size={"18px"} />
               Login
             </a>
-          </Button>
+          </Button>}
         </div>
       </div>
       <div className="flex p-4 m-0 justify-end items-center sm:hidden bg-[#f3f6f8]">

@@ -11,27 +11,19 @@ function Login() {
     email: string;
     password: string;
   };
-
+  
   const {
     register,
     handleSubmit,
   } = useForm<UserType>();
 
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
+    localStorage.setItem("id" , "1")
     console.log(data);
   };
   const onError = (errors: unknown) => console.log(errors);
-
-  // const [user, setUser] = useState<userType>({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const handleLogin = () => {
-  //   console.log(user);
-  // };
   return (
-    <div className="grid grid-cols-2 items-center justify-center">
+    <div className="grid md:grid-cols-2 container items-center justify-center">
       <div className="hidden sm:block mt-20">
         <img
           src="../../../content-creation-isometric.png"
