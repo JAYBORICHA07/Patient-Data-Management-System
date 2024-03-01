@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import axios  from "axios"
 import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { checkUser } from "@/utils/localStorageFunctions";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Login() {
+
   type UserType = {
     email: string;
     password: string;
@@ -17,19 +22,27 @@ function Login() {
     handleSubmit,
   } = useForm<UserType>();
 
+  const navigate = useNavigate()
+  const user = checkUser()
+  useEffect(()=>{
+    if(user){
+      navigate('/home')
+    }
+  })
+
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
-    console.log(data);
+    const result  = await axios.post("http://localhost:8000/api/v1/users/login", data)
+    if(result?.data?.success){
+      localStorage.setItem('user', JSON.stringify(result.data))
+      navigate('/home')
+    }else{
+      alert("Invalid Credentials")
+    }
   };
   const onError = (errors: unknown) => console.log(errors);
 
-  // const [user, setUser] = useState<userType>({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const handleLogin = () => {
-  //   console.log(user);
-  // };
+ 
+  
   return (
     <div className="grid grid-cols-2 items-center justify-center">
       <div className="hidden sm:block mt-20">

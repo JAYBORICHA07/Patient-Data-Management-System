@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { LogInIcon, UserRoundPlus } from "lucide-react";
+import { LogInIcon, UserRoundPlus, LogOutIcon, CircleUserRound } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -9,8 +9,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "./ui/separator";
+import { checkUser } from "@/utils/localStorageFunctions";
 
 const Navbar = () => {
+  const user = checkUser();
+  console.log(user);
+
   return (
     <>
       <div className="w-full p-4 m-0 h-16 sm:flex justify-between items-center hidden bg-[#f3f6f8]">
@@ -32,22 +36,48 @@ const Navbar = () => {
           <Button variant={"ghost"}>
             <a href="/contactus">Contact Us</a>
           </Button>
-          <Button variant={"outline"}>
-            <a
-              href="register"
-              className="flex justify-center items-center gap-2"
-            >
-              <UserRoundPlus size={"18px"} />
-              Register
-            </a>
-          </Button>
-          <Button>
-            <a href="/login" className="flex justify-center items-center gap-2">
-              {" "}
-              <LogInIcon size={"18px"} />
-              Login
-            </a>
-          </Button>
+          {!user ? <div className="flex justify-end items-center gap-2">
+            <Button variant={"outline"}>
+              <a
+                href="register"
+                className="flex justify-center items-center gap-2"
+              >
+                <UserRoundPlus size={"18px"} />
+                Register
+              </a>
+            </Button>
+            <Button>
+              <a
+                href="/login"
+                className="flex justify-center items-center gap-2"
+              >
+                {" "}
+                <LogInIcon size={"18px"} />
+                Login
+              </a>
+            </Button>
+          </div> :
+          <div className="flex justify-end items-center gap-2">
+            <Button variant={"outline"}>
+              <a
+                href="register"
+                className="flex justify-center items-center gap-2"
+              >
+                <CircleUserRound size={"18px"} />
+                Profile
+              </a>
+            </Button>
+            <Button onClick={()=>localStorage.removeItem('user')}>
+              <a
+                href="/login"
+                className="flex justify-center items-center gap-2"
+              >
+                {" "}
+                <LogOutIcon size={"18px"} />
+                Logout
+              </a>
+            </Button>
+          </div>}
         </div>
       </div>
       <div className="flex p-4 m-0 justify-end items-center sm:hidden bg-[#f3f6f8]">
