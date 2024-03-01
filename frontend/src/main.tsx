@@ -16,11 +16,9 @@ import PatientProfile from "./pages/PatientProfile.tsx";
 import Appointment from "./pages/Appointment.tsx";
 import AppointmentList from "./pages/AppointmentList.tsx";
 import AppointmentUpdate from "./pages/AppointmentUpdate.tsx";
-<<<<<<< HEAD
 import AppointmentTable from "./components/ui/AppointmentTable.tsx";
-=======
 import ChangePassword from "./pages/Auth/ChangePassword.tsx";
->>>>>>> main
+
 
 
 const router = createBrowserRouter([
@@ -72,13 +70,13 @@ const router = createBrowserRouter([
     element:<AppointmentUpdate/>
   },
   {
-<<<<<<< HEAD
     path:'/test',
     element:<AppointmentTable />
-=======
+  },
+  {
     path:'/changepassword',
     element:<ChangePassword/>
->>>>>>> main
+
   }
 ])
 
