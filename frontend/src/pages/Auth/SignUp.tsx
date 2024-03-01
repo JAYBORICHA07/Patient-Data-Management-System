@@ -11,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-// import { supabase } from "@/utils/supabase";
 import {
   SubmitHandler,
   useForm,
@@ -58,76 +57,56 @@ function SignUp() {
     console.log(result)
     localStorage.setItem('user',JSON.stringify(result))
     navigate('/')
-
-
   };
   const onError = (errors: unknown) => console.log(errors);
 
-  // const handleSignUp = async () => {
-  //   const { data, error } = await supabase
-  //     .from("users")
-  //     .insert({
-  //       name: user.name,
-  //       email : user.email,
-  //       phoneNumber : user.mobileNumber,
-  //       role: user.role,
-  //       password : user.password
-  //     })
-  //     .select();
-  //     if(error){
-  //       alert(error.message)
-  //     }else{
-  //       console.log(data)
-  //     }
-  // };
-
   return (
     <div className="grid grid-cols-2">
-      <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-6 rounded-lg border-blue-400">
+      <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-8 rounded-lg border-blue-400">
         <h1 className=" text-center mt-0 font-semibold text-5xl h-16 rounded-lg sm:texl-4xl border-b-2 border-double border-blue-400  text-blue-500">
           SignUp
         </h1>
         <div className="flex flex-col gap-2 ">
           <form className="text-center mt-2 block h-fit w-80">
-            <div>
+            <div className="border-b-2 border-blue-500">
               <Label className="block text-sm md:text-sm text-left font-semibold">
                 User name
               </Label>
               <Input
                 type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-1"
+                className="p-2 border-none md:p-1 h-8 active:border-none"
                 placeholder="Enter name"
                 required
                 // onChange={(e) => setUser({ ...user, name: e.target.value })}
                 {...register("name", { required: true })}
               />
             </div>
-            <div>
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
+            <div className="">
+              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
                 Email
               </Label>
               <Input
                 type="text"
-                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
+                className="p-2 mt-2 border-none md:p-1"
                 placeholder="Enter Email"
                 required
                 {...register("email", { required: true })}
               />
             </div>
-            <div>
-              <Label className="block text-sm md:text-sm text-left font-semibold my-1">
+            <div className=" border-b-2 border-blue-500 mb-2">
+              <Label className="block text-sm md:text-sm text-left font-semibold my-1 mt-3">
                 Mo. Number
               </Label>
               <Input
                 type="number"
-                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
+                className="p-2 mt-2 border-none md:p-1"
                 placeholder="Enter mobile number"
                 required
                 {...register("phoneNumber", { required: true })}
               />
             </div>
-            <div className="text-center block">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
+            <div className="text-center block border-b-2 border-blue-500 focus:outline-none">
+              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
                 Select Role
               </Label>
               <Controller
@@ -135,7 +114,7 @@ function SignUp() {
                 control={control}
                 render={({ field }) => (
                   <Select {...field} onValueChange={field.onChange}>
-                    <SelectTrigger className="bg-blue-50 p-2 mt-2 border-2 md:p-1">
+                    <SelectTrigger className=" p-2 mt-2 border-none md:p-1">
                       <SelectValue placeholder="Select Role" />
                     </SelectTrigger>
                     <SelectContent>
@@ -149,13 +128,13 @@ function SignUp() {
                 )}
               />
             </div>
-            <div className="text-center  block">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
+            <div className="text-center  block border-b-2 border-blue-500">
+              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
                 Password
               </Label>
               <Input
                 type="password"
-                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
+                className="p-2 mt-2 border-none md:p-1"
                 placeholder="Enter password"
                 required
                 {...register("password", { required: true })}

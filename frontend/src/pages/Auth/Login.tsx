@@ -21,15 +21,7 @@ function Login() {
     console.log(data);
   };
   const onError = (errors: unknown) => console.log(errors);
-
-  // const [user, setUser] = useState<userType>({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const handleLogin = () => {
-  //   console.log(user);
-  // };
+  
   return (
     <div className="grid grid-cols-2 items-center justify-center">
       <div className="hidden sm:block mt-20">
