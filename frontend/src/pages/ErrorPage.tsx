@@ -1,6 +1,6 @@
 const ErrorPage = () => {
   return (
-    <div>404 - Page not found</div>
+    <div className="flex justify-center text-6xl">404 - Page not found</div>
   )
 }
 

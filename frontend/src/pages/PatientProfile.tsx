@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 
 function PatientProfile() {
@@ -23,7 +24,7 @@ function PatientProfile() {
     }
     const {
         register, handleSubmit } = useForm<userType>();
-22
+    const navigate = useNavigate();
     const onsubmit: SubmitHandler<userType> = async (data)=>{
         console.log(data)
     }
@@ -48,10 +49,14 @@ function PatientProfile() {
                     </div>
                     <div className="mt-3">
                         {/* This information whose change is not required for ui purpose*/}
-                        <h1 className="text-center text-2xl md:text-3xl ">Patient Name</h1>
+                        {/* <h1 className="text-center text-2xl md:text-3xl ">Patient Name</h1>
                         <h1 className="text-center text-xl">Registration Id</h1>
                         <h1 className="text-center text-xl">DOB</h1>
-                        <h1 className="text-center text-xl">Mobile Number</h1>
+                        <h1 className="text-center text-xl">Mobile Number</h1> */}
+                        <h1 className="text text-2xl px-2  font-semibold border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb]  hover:bg-blue-50 mt-10"onClick={()=>{navigate('/patientprofile')}}>Profile</h1>
+                        <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/appointment')}}>Appointment</h1>
+                        <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/changepassword')}}>Change Password</h1>
+                        <h1 className="text text-2xl px-2 font-semibold border-b-2 border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/home')}}>Log Out</h1>
                     </div>
                 </div>
                 <div className="px-2 mx-5">
@@ -63,7 +68,7 @@ function PatientProfile() {
                             <Label className="">Email</Label>
                             <Input
                                 type="email"
-                                className="p-2 mt-2 border-2  md:p-5"
+                                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
                                 placeholder="Enter email"
                                 required
                                 {...register("email",{required:true})}
