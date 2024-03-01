@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 
 function DoctorProfile() {
@@ -28,6 +29,7 @@ function DoctorProfile() {
 
     }= useForm<UserType>();
 
+    const navigate = useNavigate()
     const onsubmit: SubmitHandler<UserType> = async (data)=>
     {
         console.log(data)
@@ -53,10 +55,14 @@ function DoctorProfile() {
                     </div>
                     <div className="mt-3">
                     {/* This information whose change is not required for ui purpose only*/}
-                    <h1 className="text-center text-2xl md:text-3xl ">Dr Name</h1>
+                    {/* <h1 className="text-center text-2xl md:text-3xl ">Dr Name</h1>
                     <h1 className="text-center text-xl">Specialization</h1>
                     <h1 className="text-center text-xl">Registartion Number</h1>
-                    <h1 className="text-center text-xl">Registration Year</h1>
+                    <h1 className="text-center text-xl">Registration Year</h1> */}
+                        <h1 className="text text-2xl px-2  font-semibold border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb]  hover:bg-blue-50 mt-10"onClick={()=>{navigate('/doctorprofile')}}>Profile</h1>
+                        <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/appointment')}}>Appointment</h1>
+                        <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/changepassword')}}>Change Password</h1>
+                        <h1 className="text text-2xl px-2 font-semibold border-b-2 border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/')}}>Log Out</h1>
                     
                     </div>
                 </div>

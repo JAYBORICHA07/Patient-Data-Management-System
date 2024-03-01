@@ -1,15 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
-
 function AppointmentList() {
-
-    const[apppointments,Setappointments]= useState([])
-
-    //after fecthing api we will use useState for get appointments
-    useState(()=>{
-        //getAppointments
-    })
-
   return (
     <div className="flex justify-center text-lg">
         <table className=" border-2 ">
