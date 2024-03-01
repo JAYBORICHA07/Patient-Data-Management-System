@@ -22,8 +22,6 @@ AppointmentController.insert = async (req, res) => {
     }
 }
 AppointmentController.get = async (req, res) => {
-    const { patientName, patientId, doctorName, doctorId, bookingDate, appointmentDate, appointmentTime, status  } = req.body
-    console.log({patientName, patientId, doctorName, doctorId, bookingDate, appointmentDate, appointmentTime, status})
 
     const { data, error } = await supabase.from('appointments').select('*')
     if (error) {

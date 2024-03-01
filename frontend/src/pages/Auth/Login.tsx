@@ -18,7 +18,15 @@ function Login() {
   } = useForm<UserType>();
 
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
-    console.log(data);
+    let result = await fetch('http://localhost:8000/api/v1/users/login',{
+      method:'post',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-type':'application/json'
+      }
+    })
+    result = await result.json()
+    console.log(result)
   };
   const onError = (errors: unknown) => console.log(errors);
 

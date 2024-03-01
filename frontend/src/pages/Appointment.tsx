@@ -5,11 +5,11 @@ import { SubmitHandler, useForm } from "react-hook-form"
 
 function Appointment() {
   type userType = {
-    patientName:String,
-    doctorName:String,
+    patientName:string,
+    doctorName:string,
     bookingDate:Date,
     appointmentDate:Date,
-    appointmentTime:String
+    appointmentTime:string
   }
   const{
     register,handleSubmit}= useForm< userType>();

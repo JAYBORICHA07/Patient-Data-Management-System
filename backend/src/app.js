@@ -18,15 +18,16 @@ import userRouter from './routes/user.routes.js'
 import patientRouter from './routes/patient.route.js'
 import doctorRouter from './routes/doctor.route.js'
 import appointmentRouter from './routes/appointment.route.js'
-
+import dashboardRouter from './routes/dashboard.route.js'
 
 
 
 //routes declaration
 app.use("/api/v1/users", userRouter)
-app.use("/api/v1/patient", authMiddleware, patientRouter)
-app.use("/api/v1/doctor", authMiddleware, doctorRouter)
-app.use("/api/v1/appointment", appointmentRouter)
+app.use("/api/v1/patient",authMiddleware, patientRouter)
+app.use("/api/v1/doctor", authMiddleware,doctorRouter)
+app.use("/api/v1/appointment", authMiddleware,appointmentRouter)
+app.use("/api/v1/dashboard", dashboardRouter)
 
 
 
