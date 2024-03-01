@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import toast, { Toaster } from 'react-hot-toast';
 import {
   Select,
   SelectContent,
@@ -18,7 +19,11 @@ import {
   Controller,
   useController,
 } from "react-hook-form";
+// import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { checkUser } from "@/utils/localStorageFunctions";
+import { useEffect } from "react";
 
 function SignUp() {
   const roles = ["PATIENT", "DOCTOR", "MANAGEMENT"] as const;
@@ -32,6 +37,10 @@ function SignUp() {
     role: Role;
   };
 
+  const navigate = useNavigate()
+
+  const notify = () => toast.success('Successfully created!');
+
   const {
     register,
     handleSubmit,
@@ -44,23 +53,27 @@ function SignUp() {
     name: "role",
     control,
   });
-  const navigate = useNavigate()
+  const user = checkUser()
+  useEffect(()=>{
+    if(user){
+      navigate('/home')
+    }
+  })
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
     console.log(data)
-    let result = await fetch('http://localhost:8000/api/v1/users/register',{
-      method:'post',
-      body: JSON.stringify(data),
-      headers:{
-        'Content-type':'application/json'
-      }
-    })
-    result = await result.json()
-    console.log(result)
-    localStorage.setItem('user',JSON.stringify(result))
-    navigate('/patientprofile')
+
+    const result = await axios.post("http://localhost:8000/api/v1/users/register", data)
+    if(result?.data?.length){
+      navigate('/login')
+      notify()
+    }else{
+      toast.error("Something went wrong Please try again")
+    }
+
   };
   const onError = (errors: unknown) => console.log(errors);
-  return (
+
+return (
     <div className="grid grid-cols-2 container">
       <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-6 rounded-lg border-blue-400">
         <h1 className=" text-center mt-0 font-semibold text-5xl h-16 rounded-lg sm:texl-4xl border-b-2 border-double border-blue-400  text-blue-500">
@@ -148,6 +161,7 @@ function SignUp() {
               >
                 SignUp
               </Button>
+              <Toaster />
             </div>
           </form>
         </div>

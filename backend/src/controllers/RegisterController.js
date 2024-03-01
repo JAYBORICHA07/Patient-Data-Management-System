@@ -11,7 +11,7 @@ const RegisterController = async (req, res) => {
         email,
         phoneNumber,
         role,
-        password: hashedPassword
+        password: hashedPassword,
     }).select()
     if (error) {
         res.send(error)
