@@ -16,10 +16,12 @@ import PatientProfile from "./pages/PatientProfile.tsx";
 import Appointment from "./pages/Appointment.tsx";
 import AppointmentList from "./pages/AppointmentList.tsx";
 import AppointmentUpdate from "./pages/AppointmentUpdate.tsx";
+import AppointmentTable from "./components/ui/AppointmentTable.tsx";
 import ChangePassword from "./pages/Auth/ChangePassword.tsx";
 import DoctorDashboard from "./pages/DoctorDashboard.tsx";
 import PatientDashboard from "./pages/PatientDashboard.tsx";
 import ChatBox from "./pages/ChatBox.tsx";
+
 
 
 const router = createBrowserRouter([
@@ -72,6 +74,10 @@ const router = createBrowserRouter([
     element:<AppointmentUpdate/>
   },
   {
+    path:'/test',
+    element:<AppointmentTable />
+  },
+  {
     path:'/changepassword',
     element:<ChangePassword/>
   },
@@ -86,6 +92,7 @@ const router = createBrowserRouter([
   {
     path:'/chatbox',
     element: <ChatBox/>
+
   }
 ])
 

@@ -12,7 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-// import { supabase } from "@/utils/supabase";
 import {
   SubmitHandler,
   useForm,
@@ -20,7 +19,6 @@ import {
   useController,
   Form,
 } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { checkUser } from "@/utils/localStorageFunctions";
