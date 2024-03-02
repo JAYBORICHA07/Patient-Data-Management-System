@@ -7,7 +7,6 @@ function Appointment() {
   type userType = {
     patientName:String,
     doctorName:String,
-    bookingDate:Date,
     appointmentDate:Date,
     appointmentTime:String
   }
@@ -44,13 +43,6 @@ function Appointment() {
                 placeholder="Enter doctor name"
                 required
                 {...register("doctorName",{required:true})} />
-
-                <Label className="">Booking Date</Label>
-                <Input
-                type="date"
-                className="p-2 mt-2 border border-blue-500  md:p-5"
-                required 
-                {...register("bookingDate",{required:true})} />
 
                 <Label className="">Appointment Date</Label>
                 <Input

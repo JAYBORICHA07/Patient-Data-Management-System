@@ -17,6 +17,9 @@ import Appointment from "./pages/Appointment.tsx";
 import AppointmentList from "./pages/AppointmentList.tsx";
 import AppointmentUpdate from "./pages/AppointmentUpdate.tsx";
 import ChangePassword from "./pages/Auth/ChangePassword.tsx";
+import DoctorDashboard from "./pages/DoctorDashboard.tsx";
+import PatientDashboard from "./pages/PatientDashboard.tsx";
+import ChatBox from "./pages/ChatBox.tsx";
 
 
 const router = createBrowserRouter([
@@ -53,11 +56,12 @@ const router = createBrowserRouter([
   },
   {
     path:'/patientprofile',
-    element:<PatientProfile/>
+    element:<PatientProfile/>,
   },
   {
     path:'/appointment',
-    element:<Appointment/>
+    element: <Appointment/>
+
   },
   {
     path:'/appointmentlist',
@@ -70,6 +74,18 @@ const router = createBrowserRouter([
   {
     path:'/changepassword',
     element:<ChangePassword/>
+  },
+  {
+    path:'/doctordashboard',
+    element:<DoctorDashboard/>
+  },
+  {
+    path:'/patientdashboard',
+    element: <PatientDashboard/>
+  },
+  {
+    path:'/chatbox',
+    element: <ChatBox/>
   }
 ])
 
