@@ -61,6 +61,7 @@ function SignUp() {
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
     console.log(data)
 
+
     const result = await axios.post("http://localhost:8000/api/v1/users/register", data)
     if(result?.data?.length){
       navigate('/login')
@@ -86,30 +87,31 @@ return (
               </Label>
               <Input
                 type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-1"
+                className="p-2 border-none md:p-1 h-8 active:border-none"
                 placeholder="Enter name"
                 required
                 // onChange={(e) => setUser({ ...user, name: e.target.value })}
                 {...register("name", { required: true })}
               />
             </div>
-            <div>
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
+            <div className="">
+              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
                 Email
               </Label>
               <Input
                 type="text"
-                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
+                className="p-2 mt-2 border-none md:p-1"
                 placeholder="Enter Email"
                 required
                 {...register("email", { required: true })}
               />
             </div>
-            <div>
-              <Label className="block text-sm md:text-sm text-left font-semibold my-1">
+            <div className=" border-b-2 border-blue-500 mb-2">
+              <Label className="block text-sm md:text-sm text-left font-semibold my-1 mt-3">
                 Mo. Number
               </Label>
               <Input
+
                 type="text"
                 className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
                 placeholder="Enter mobile number"
@@ -117,8 +119,8 @@ return (
                 {...register("phoneNumber", { required: true })}
               />
             </div>
-            <div className="text-center block">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
+            <div className="text-center block border-b-2 border-blue-500 focus:outline-none">
+              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
                 Select Role
               </Label>
               <Controller
@@ -126,7 +128,7 @@ return (
                 control={control}
                 render={({ field }) => (
                   <Select {...field} onValueChange={field.onChange}>
-                    <SelectTrigger className="bg-blue-50 p-2 mt-2 border-2 md:p-1">
+                    <SelectTrigger className=" p-2 mt-2 border-none md:p-1">
                       <SelectValue placeholder="Select Role" />
                     </SelectTrigger>
                     <SelectContent>
@@ -140,13 +142,13 @@ return (
                 )}
               />
             </div>
-            <div className="text-center  block">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-1">
+            <div className="text-center  block border-b-2 border-blue-500">
+              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
                 Password
               </Label>
               <Input
                 type="password"
-                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
+                className="p-2 mt-2 border-none md:p-1"
                 placeholder="Enter password"
                 required
                 {...register("password", { required: true })}
