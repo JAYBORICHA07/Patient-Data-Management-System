@@ -9,11 +9,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "./ui/separator";
-import { checkUser } from "@/utils/localStorageFunctions";
+import { checkDoctor, checkUser } from "@/utils/localStorageFunctions";
 
 const Navbar = () => {
   const user = checkUser();
-  console.log(user);
+  const isDoctor = checkDoctor();
+
+  const profileRoute = isDoctor ? "/doctorprofile" : "/patientprofile";
 
   return (
     <>
@@ -60,7 +62,7 @@ const Navbar = () => {
           <div className="flex justify-end items-center gap-2">
             <Button variant={"outline"}>
               <a
-                href="register"
+                href= {profileRoute}
                 className="flex justify-center items-center gap-2"
               >
                 <CircleUserRound size={"18px"} />

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
+import { getToken } from "@/utils/localStorageFunctions";
 // type Appointment = {
 //   id: number;
 //   date: string;
@@ -17,14 +18,18 @@ const AppointmentTable = () => {
 useEffect(() => {
     const fetchData = async () => {
         try {
-            const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpc2hha2VyYWxpeWEwOEBnbWFpbC5jb20iLCJpZCI6MTAsImlhdCI6MTcwOTI4NjExNSwiZXhwIjoxNzA5NDU4OTE1fQ.whI97_pbxlkiMaUMjkXi-KZJuTxfZre7AOkl-gfO-2E";
+            const authToken = getToken();
+            const config = {
+                headers: { Authorization: `Bearer ${authToken}` }
+            };
+            const bodyParameter = {
+                doctorId : "5"
+            }
 
-            const response = await axios.post('http://localhost:8000/api/v1/dashboard/doctor', {
-                headers: {
-                    Authorization: `Bearer ${authToken}`
-                },
-                body: { doctorId : "5" } 
-            });
+            const response = await axios.post('http://localhost:8000/api/v1/dashboard/doctor', 
+               bodyParameter,
+               config
+            );
             console.log(response.data); // Handle response data here
         } catch (error) {
             console.error('Error:', error); // Handle errors here

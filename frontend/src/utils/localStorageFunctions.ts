@@ -5,5 +5,10 @@ export const checkUser = () => {
 
 export const getToken = () => {
     const user = JSON.parse(localStorage.getItem('user')!)
-    return user.token;
+    return user?.token;
+}
+
+export const checkDoctor = () => {
+    const user = JSON.parse(localStorage.getItem('user')!)
+    return user?.user?.role === 'DOCTOR';
 }
