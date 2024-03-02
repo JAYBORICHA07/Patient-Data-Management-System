@@ -23,12 +23,14 @@ import axios from "axios";
 
 function Appointment() {
   type userType = {
+
     patientName: string;
     doctorName: string;
     appointmentDate: Date;
     appointmentTime: string;
   };
   const { register, handleSubmit, setValue, control } = useForm<userType>();
+
 
    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -60,6 +62,7 @@ function Appointment() {
     };
     getDocs();
   },[]);
+
 
   const OnSubmit: SubmitHandler<userType> = async (data) => {
     console.log(data);
@@ -138,6 +141,7 @@ function Appointment() {
             required
             {...register("appointmentDate", { required: true })}
           />
+
 
           <Label className="">Appointment Time</Label>
           <Input
