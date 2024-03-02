@@ -1,3 +1,4 @@
+import AppointmentTable from "@/components/ui/AppointmentTable"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom"
 
@@ -37,25 +38,7 @@ function PatientDashboard() {
             <div className="text-xl mt-5 mx-3 font-semibold">
                 Patient Appointment
             </div>
-            <div className="border-2 border-[#2463eb] rounded-lg h-fit mt-5 m-2 py-2">
-                <div className="h-fit flex flex-col ">
-                    <div className="flex border-b  border-[#2463eb] h-10">
-                        <p className="mx-3 px-5 text-lg font-semibold">Patient Name</p>
-                        <p className="mx-3 px-5 text-lg font-semibold">Appointment Date</p>
-                        <p className="mx-3 px-5 text-lg font-semibold">Appointment Time</p>
-                        <p className="mx-3 px-5 text-lg font-semibold">Fees</p>
-                        <p className="mx-3 px-5 text-lg font-semibold">Status</p>
-                    </div>
-            
-                    <div className="flex">
-                        <p className="mx-3 px-5 text-lg">Patient Name</p>
-                        <p className="mx-3 px-5 text-lg">Appointment Date</p>
-                        <p className="mx-3 px-5 text-lg">Appointment Time</p>
-                        <p className="mx-3 px-5 text-lg">Fees</p>
-                        <p className="mx-3 px-5 text-lg font-semibold">Status</p>
-                    </div>
-                </div>
-            </div>
+            <AppointmentTable />
         </div>
     </div>
     <div>

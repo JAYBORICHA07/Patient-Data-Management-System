@@ -160,7 +160,6 @@ return (
               >
                 SignUp
               </Button>
-              <Toaster />
             </div>
           </Form>
         </div>

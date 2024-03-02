@@ -1,5 +1,6 @@
+import AppointmentTable from "@/components/ui/AppointmentTable";
 import { Button } from "@/components/ui/button"
-import { ClipboardList, PencilLine, Table, UserRound } from "lucide-react";
+import { ClipboardList, PencilLine, UserRound } from "lucide-react";
 import { useNavigate } from "react-router-dom"
 
 function DoctorDashboard() {
@@ -73,32 +74,7 @@ function DoctorDashboard() {
                     <div className="text-xl mt-5 mx-3">
                         Patient Appointment
                     </div>
-                    <div className="border border-[#2463eb] rounded-lg h-fit mt-5 m-2 py-2">
-                        <div className="border-b-2 border-[#2463eb] h-16">
-                            <div className="flex mt-3">
-                                <Button className="rounded-3xl mx-4">Upcoming</Button>
-                                <Button className="rounded-3xl mx-1 px-8">Today</Button>
-                            </div>
-                        </div>
-                        <div className="h-fit flex flex-col ">
-                            <div className="flex border-b  border-[#2463eb] h-14">
-                                <p className="mx-3 px-5 text-lg font-semibold">Patient Name</p>
-                                <p className="mx-3 px-5 text-lg font-semibold">Appointment Date</p>
-                                <p className="mx-3 px-5 text-lg font-semibold">Appointment Time</p>
-                                <p className="mx-3 px-5 text-lg font-semibold">Fees</p>
-                                <p className="mx-3 px-5 text-lg font-semibold">Status</p>
-                            </div>
-                    
-                            <div className="flex">
-                                <p className="mx-3 px-5 text-lg">Patient Name</p>
-                                <p className="mx-3 px-5 text-lg">Appointme Date</p>
-                                <p className="mx-3 px-5 text-lg">Appointment Time</p>
-                                <p className="mx-3 px-5 text-lg">Fees</p>
-                                <p className="mx-3 px-5 text-lg">Status</p>
-
-                            </div>
-                        </div>
-                    </div>
+                    <AppointmentTable />
                 </div>
             </div>
             <div>
