@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
         <div className="flex justify-end items-center gap-2">
           <Button variant={"ghost"}>
-            <a href="/home">Home</a>
+            <a href="/">Home</a>
           </Button>
           <Button variant={"ghost"}>
             <a href="/about">About Us</a>
@@ -94,7 +94,7 @@ const Navbar = () => {
             </SheetHeader>
             <div className="flex flex-col gap-2">
               <Button variant={"ghost"}>
-                <a href="/home">Home</a>
+                <a href="/">Home</a>
               </Button>
               <Separator />
               <Button variant={"ghost"}>

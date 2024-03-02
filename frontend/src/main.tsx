@@ -26,11 +26,6 @@ import ChatBox from "./pages/ChatBox.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
-    element: <Homepage />,
-    errorElement: <ErrorPage />,
-  },
-  {
     path: "/",
     element: <Homepage />,
     errorElement: <ErrorPage />,
@@ -59,6 +54,12 @@ const router = createBrowserRouter([
   {
     path:'/patientprofile',
     element:<PatientProfile/>,
+    children : [
+      {
+        path : '/patientprofile/appointment',
+        element : <Appointment />
+      }
+    ]
   },
   {
     path:'/appointment',
