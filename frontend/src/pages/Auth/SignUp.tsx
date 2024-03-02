@@ -18,6 +18,7 @@ import {
   useForm,
   Controller,
   useController,
+  Form,
 } from "react-hook-form";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -80,7 +81,7 @@ return (
           SignUp
         </h1>
         <div className="flex flex-col gap-2 ">
-          <form className="text-center mt-2 block h-fit w-80">
+          <Form className="text-center mt-2 block h-fit w-80">
             <div>
               <Label className="block text-sm md:text-sm text-left font-semibold">
                 User name
@@ -163,7 +164,7 @@ return (
               </Button>
               <Toaster />
             </div>
-          </form>
+          </Form>
         </div>
       </div>
       <div className="hidden  mt-16 py-4 h-[73%] w-[96%] sm:flex justify-center items-center">

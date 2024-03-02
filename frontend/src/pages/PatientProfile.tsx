@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
+import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom"
 
 
 function PatientProfile() {
@@ -53,7 +53,7 @@ function PatientProfile() {
                         <h1 className="text-center text-xl">Registration Id</h1>
                         <h1 className="text-center text-xl">DOB</h1>
                         <h1 className="text-center text-xl">Mobile Number</h1> */}
-                        <h1 className="text text-2xl px-2  font-semibold border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb]  hover:bg-blue-50 mt-10"onClick={()=>{navigate('/patientprofile')}}>Profile</h1>
+                        <h1 className="text text-2xl px-2  font-semibold border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb]  hover:bg-blue-50 mt-10"onClick={()=>{navigate('/patientprofile')}}><NavLink to='/appointment'>Profile</NavLink></h1>
                         <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/appointment')}}>Appointment</h1>
                         <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/changepassword')}}>Change Password</h1>
                         <h1 className="text text-2xl px-2 font-semibold border-b-2 border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/home')}}>Log Out</h1>
@@ -220,6 +220,7 @@ function PatientProfile() {
                             Update Details</Button>
                     </div>
                 </div>
+
             </div>
         </div>
     )
