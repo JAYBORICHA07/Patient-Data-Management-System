@@ -17,7 +17,6 @@ import {
   useForm,
   Controller,
   useController,
-  Form,
 } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -80,17 +79,16 @@ return (
           SignUp
         </h1>
         <div className="flex flex-col gap-2 ">
-          <Form className="text-center mt-2 block h-fit w-80">
+          <form className="text-center mt-2 block h-fit w-80">
             <div>
-              <Label className="block text-sm md:text-sm text-left font-semibold">
+              <Label className="block text-sm md:text-lg text-left font-semibold">
                 User name
               </Label>
               <Input
                 type="text"
-                className="p-2 border-none md:p-1 h-8 active:border-none"
+                className="p-2 mt-3 border-2 bg-blue-50"
                 placeholder="Enter name"
                 required
-                // onChange={(e) => setUser({ ...user, name: e.target.value })}
                 {...register("name", { required: true })}
               />
             </div>
@@ -164,7 +162,7 @@ return (
               </Button>
               <Toaster />
             </div>
-          </Form>
+          </form>
         </div>
       </div>
       <div className="hidden  mt-16 py-4 h-[73%] w-[96%] sm:flex justify-center items-center">
