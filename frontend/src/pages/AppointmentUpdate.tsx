@@ -1,8 +1,25 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
+import { SubmitHandler, useForm } from "react-hook-form"
 
 function AppointmentUpdate() {
+  type userType = {
+    patientName:string,
+    doctorName:string,
+    appointmentDate:string,
+    appointmentTime:string
+  }
+
+  const {register,handleSubmit} = useForm<userType>();
+  const OnSubmit: SubmitHandler<userType> = async(data)=>{
+    console.log(data);
+    if(data){
+        alert("Your appointment submitted succesfully")
+    }
+    
+}
+const OnError = (error:unknown)=>console.log(error)
   return (
     <div className="flex flex-row justify-center">
         <div className="border-2 rounded-xl m-5 shadow-inner border-blue-500  w-fit md:w-2/5 ">
@@ -15,34 +32,32 @@ function AppointmentUpdate() {
                 type="text"
                 className="p-2 mt-2 border border-blue-500  md:p-5"
                 placeholder="Enter patient name"
-                required  />
+                required  
+                {...register("patientName",{required:true})} />
 
                 <Label className="">Doctor Name</Label>
                 <Input
                 type="text"
                 className="p-2 mt-2 border border-blue-500 md:p-5"
                 placeholder="Enter doctor name"
-                required />
-
-                <Label className="">Booking Date</Label>
-                <Input
-                type="date"
-                className="p-2 mt-2 border border-blue-500  md:p-5"
-                required  />
+                required
+                {...register("doctorName",{required:true})} />
                 
                 <Label className="">Appointment Date</Label>
                 <Input
                 type="date"
                 className="p-2 mt-2 border  border-blue-500 md:p-5"
-                required  />
+                required 
+                {...register("appointmentDate",{required:true})} />
 
                 <Label className="">Appointment Time</Label>
                 <Input
                 type="time"
                 className="p-2 mt-2 border  border-blue-500 md:p-5"
-                required  />
+                required 
+                {...register("appointmentTime",{required:true})} />
                 <Button 
-                className="p-2 mt-4 md:p-5 w-full mb-3 ">Update</Button>
+                className="p-2 mt-4 md:p-5 w-full mb-3 " onClick={handleSubmit(OnSubmit,OnError)}>Update</Button>
             </div>
         </div>
     </div>

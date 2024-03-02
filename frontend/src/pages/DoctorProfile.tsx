@@ -1,10 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
+import { checkUser, getToken } from "@/utils/localStorageFunctions";
 import { Label } from "@radix-ui/react-label"
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 
 function DoctorProfile() {
+    const doctorId = checkUser().user.id;
+    const [doctorData, setDoctorData] = useState<UserType>()
 
     type UserType = {
         name:string,
@@ -25,12 +31,69 @@ function DoctorProfile() {
     const{
         register,
         handleSubmit,
-
+        setValue
     }= useForm<UserType>();
 
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const authToken = getToken();
+                const config = {
+                    headers: { Authorization: `Bearer ${authToken}` }
+                };
+                const bodyParameter = {
+                    doctorId : doctorId
+                }
+    
+                const response = await axios.post('http://localhost:8000/api/v1/doctor/profile/getone', 
+                   bodyParameter,
+                   config
+                );
+                setDoctorData(response.data); // Handle response data here
+                if(doctorData){
+                    setValue("clinicAddress", doctorData?.clinicAddress)
+                    setValue("clinicCity",doctorData.clinicCity)
+                    setValue("clinicName",doctorData.clinicName)
+                    setValue("clinicState",doctorData.clinicState)
+                    setValue("doctorRegistrationNumber",doctorData.doctorRegistrationNumber)
+                    setValue("doctorRegistrationYear",doctorData.doctorRegistrationYear)
+                    setValue("email",doctorData.email)
+                    setValue("fees", doctorData.fees)
+                    setValue("name", doctorData.name)
+                    setValue("phoneNumber",doctorData.phoneNumber)
+                    setValue("qualification", doctorData.qualification)
+                    setValue("services", doctorData.services)
+                    setValue("specialization", doctorData.specialization)
+                } 
+                
+                
+            } catch (error) {
+                console.log('Error:', error); // Handle errors here
+            }
+        };
+        fetchData();
+    });
+
+
+    const navigate = useNavigate()
     const onsubmit: SubmitHandler<UserType> = async (data)=>
     {
-        console.log(data)
+        console.log({ doctorId, ...data });
+        const authToken = getToken();
+        const config = {
+          headers: { Authorization: `Bearer ${authToken}` },
+        };
+        const bodyParameter = {
+            doctorId , ...data,
+        };
+        const result = await axios.post(
+          "http://localhost:8000/api/v1/doctor/profile",
+          bodyParameter,
+          config
+        );
+        console.log(result);
     };
     const onError = (error:unknown)=> console.log(error);
 
@@ -52,11 +115,10 @@ function DoctorProfile() {
                     </Button>
                     </div>
                     <div className="mt-3">
-                    {/* This information whose change is not required for ui purpose only*/}
-                    <h1 className="text-center text-2xl md:text-3xl ">Dr Name</h1>
-                    <h1 className="text-center text-xl">Specialization</h1>
-                    <h1 className="text-center text-xl">Registartion Number</h1>
-                    <h1 className="text-center text-xl">Registration Year</h1>
+                        <h1 className="text text-2xl px-2  font-semibold border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb]  hover:bg-blue-50 mt-10"onClick={()=>{navigate('/doctorprofile')}}>Profile</h1>
+                        <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/appointment')}}>Appointment</h1>
+                        <h1 className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/changepassword')}}>Change Password</h1>
+                        <h1 className="text text-2xl px-2 font-semibold border-b-2 border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"onClick={()=>{navigate('/')}}>Log Out</h1>
                     
                     </div>
                 </div>

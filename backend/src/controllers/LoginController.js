@@ -9,8 +9,14 @@ const LoginController = async (req, res) => {
 
         const { data, error } = await supabase.from('users').select('*').eq("email", email);
 
+        console.log(data)
+        if(error){
+            console.log(error)
+            res.json(error)
+        }
+
         if (!data || data.length === 0) {
-            return res.status(401).json({
+            res.status(401).json({
                 message: "Invalid credentials",
             });
         }
@@ -24,7 +30,7 @@ const LoginController = async (req, res) => {
 
             let token = jwt.sign(payload, process.env.JWT_SECRET || "your_jwt_secret", { expiresIn: "2d" });
             delete user.password;
-            return res.status(200).json({
+            res.status(200).json({
                 success: true,
                 message: `login successfully`,
                 token,
@@ -34,7 +40,7 @@ const LoginController = async (req, res) => {
     } 
     catch (error) {
         console.error(error);
-        return res.status(500).json({
+        res.status(500).json({
             message: "Server error",
         });
     }

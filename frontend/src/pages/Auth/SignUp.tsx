@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import toast, { Toaster } from 'react-hot-toast';
 import {
   Select,
   SelectContent,
@@ -16,8 +17,12 @@ import {
   useForm,
   Controller,
   useController,
+  Form,
 } from "react-hook-form";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { checkUser } from "@/utils/localStorageFunctions";
+import { useEffect } from "react";
 
 function SignUp() {
   const roles = ["PATIENT", "DOCTOR", "MANAGEMENT"] as const;
@@ -31,6 +36,10 @@ function SignUp() {
     role: Role;
   };
 
+  const navigate = useNavigate()
+
+  const notify = () => toast.success('Successfully created!');
+
   const {
     register,
     handleSubmit,
@@ -43,32 +52,36 @@ function SignUp() {
     name: "role",
     control,
   });
-  const navigate = useNavigate()
+  const user = checkUser()
+  useEffect(()=>{
+    if(user){
+      navigate('/home')
+    }
+  })
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
     console.log(data)
-    let result = await fetch('http://localhost:8000/api/v1/users/register',{
-      method:'post',
-      body: JSON.stringify(data),
-      headers:{
-        'Content-type':'application/json'
-      }
-    })
-    result = await result.json()
-    console.log(result)
-    localStorage.setItem('user',JSON.stringify(result))
-    navigate('/')
+
+
+    const result = await axios.post("http://localhost:8000/api/v1/users/register", data)
+    if(result?.data?.length){
+      navigate('/login')
+      notify()
+    }else{
+      toast.error("Something went wrong Please try again")
+    }
+
   };
   const onError = (errors: unknown) => console.log(errors);
 
-  return (
-    <div className="grid grid-cols-2">
-      <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-8 rounded-lg border-blue-400">
+return (
+    <div className="grid grid-cols-2 container">
+      <div className="md:container py-2 flex flex-col px-5 m-2 mx-1  w-fit    md:py-2 md:w-fit md:h-fit border-2  md:mt-6 rounded-lg border-blue-400">
         <h1 className=" text-center mt-0 font-semibold text-5xl h-16 rounded-lg sm:texl-4xl border-b-2 border-double border-blue-400  text-blue-500">
           SignUp
         </h1>
         <div className="flex flex-col gap-2 ">
-          <form className="text-center mt-2 block h-fit w-80">
-            <div className="border-b-2 border-blue-500">
+          <Form className="text-center mt-2 block h-fit w-80">
+            <div>
               <Label className="block text-sm md:text-sm text-left font-semibold">
                 User name
               </Label>
@@ -98,8 +111,9 @@ function SignUp() {
                 Mo. Number
               </Label>
               <Input
-                type="number"
-                className="p-2 mt-2 border-none md:p-1"
+
+                type="text"
+                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
                 placeholder="Enter mobile number"
                 required
                 {...register("phoneNumber", { required: true })}
@@ -148,8 +162,9 @@ function SignUp() {
               >
                 SignUp
               </Button>
+              <Toaster />
             </div>
-          </form>
+          </Form>
         </div>
       </div>
       <div className="hidden  mt-16 py-4 h-[73%] w-[96%] sm:flex justify-center items-center">
