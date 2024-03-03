@@ -18,7 +18,7 @@ import userRouter from './routes/user.routes.js'
 import patientRouter from './routes/patient.route.js'
 import doctorRouter from './routes/doctor.route.js'
 import appointmentRouter from './routes/appointment.route.js'
-import openai from'./routes/openai.routes.js'
+// import openai from'./routes/openai.routes.js'
 import dashboardRouter from './routes/dashboard.route.js'
 
 
@@ -28,7 +28,7 @@ app.use("/api/v1/users", userRouter)
 app.use("/api/v1/patient", authMiddleware, patientRouter)
 app.use("/api/v1/doctor", authMiddleware, doctorRouter)
 app.use("/api/v1/appointment", appointmentRouter)
-app.use("/api/v1/openai", openai)
+// app.use("/api/v1/openai", openai)
 app.use("/api/v1/dashboard", dashboardRouter)
 
 
