@@ -26,7 +26,7 @@ function Login() {
   const user = checkUser()
   useEffect(()=>{
     if(user){
-      navigate('/home')
+      navigate('/')
     }
   })
 
@@ -34,7 +34,7 @@ function Login() {
     const result  = await axios.post("http://localhost:8000/api/v1/users/login", data)
     if(result?.data?.success){
       localStorage.setItem('user', JSON.stringify(result.data))
-      navigate('/home')
+      navigate('/')
     }else{
       alert("Invalid Credentials")
     }

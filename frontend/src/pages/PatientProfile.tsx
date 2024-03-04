@@ -8,7 +8,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 function PatientProfile() {
-  const patientId = checkUser().user.id;
   const [patientData, setPatientData] = useState<userType>()
 
   type userType = {
@@ -31,6 +30,7 @@ function PatientProfile() {
   const { register, handleSubmit, setValue } = useForm<userType>();
 
   useEffect(() => {
+  const patientId = checkUser().user.id;
     const fetchData = async () => {
         try {
             const authToken = getToken();
@@ -46,31 +46,31 @@ function PatientProfile() {
                config
             );
             setPatientData(response.data); // Handle response data here
-            
-            if(patientData){
-                setValue("address", patientData?.address)
-                setValue("alergies", patientData.alergies)
-                setValue("bloodGroup",patientData.bloodGroup)
-                setValue("city", patientData.city)
-                setValue("country", patientData.country)
-                setValue("dob",patientData.dob)
-                setValue("email",patientData.email)
-                setValue("familyMedicalHistory",patientData.familyMedicalHistory)
-                setValue("name", patientData.name)
-                setValue("ongoingMedication", patientData.ongoingMedication)
-                setValue("pastMedicalHistory", patientData.pastMedicalHistory)
-                setValue("phoneNumber", patientData.phoneNumber)
-                setValue("pincode", patientData.pincode)
-                setValue("state", patientData.state)
-            } 
-            
-            
         } catch (error) {
             console.log('Error:', error); // Handle errors here
         }
     };
     fetchData();
 });
+
+useEffect(()=>{
+  if(patientData){
+    setValue("address", patientData.address)
+    setValue("alergies", patientData.alergies)
+    setValue("bloodGroup",patientData.bloodGroup)
+    setValue("city", patientData.city)
+    setValue("country", patientData.country)
+    setValue("dob",patientData.dob)
+    setValue("email",patientData.email)
+    setValue("familyMedicalHistory",patientData?.familyMedicalHistory)
+    setValue("name", patientData.name)
+    setValue("ongoingMedication", patientData.ongoingMedication)
+    setValue("pastMedicalHistory", patientData.pastMedicalHistory)
+    setValue("phoneNumber", patientData.phoneNumber)
+    setValue("pincode", patientData.pincode)
+    setValue("state", patientData.state)
+} 
+},[patientData])
 
   const navigate = useNavigate();
 
@@ -134,7 +134,7 @@ function PatientProfile() {
             <h1
               className="text text-2xl px-2 font-semibold border-b-2 border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"
               onClick={() => {
-                navigate("/home");
+                navigate("/");
               }}
             >
               Log Out

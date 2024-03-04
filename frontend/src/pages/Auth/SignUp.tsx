@@ -54,7 +54,7 @@ function SignUp() {
   const user = checkUser()
   useEffect(()=>{
     if(user){
-      navigate('/home')
+      navigate('/')
     }
   })
   const onSubmit: SubmitHandler<UserType> = async (data: UserType) => {
