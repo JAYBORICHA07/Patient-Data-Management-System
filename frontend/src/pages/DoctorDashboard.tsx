@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { ClipboardList, PencilLine, Table, UserRound } from "lucide-react";
+import { ClipboardList, PencilLine, UserRound } from "lucide-react";
 import { useNavigate } from "react-router-dom"
 
 function DoctorDashboard() {
@@ -23,11 +23,6 @@ function DoctorDashboard() {
                         </Button>
                     </div>
                     <div className="mt-3">
-                        {/* This information whose change is not required for ui purpose only*/}
-                        {/* <h1 className="text-center text-2xl md:text-3xl ">Dr Name</h1>
-            <h1 className="text-center text-xl">Specialization</h1>
-            <h1 className="text-center text-xl">Registartion Number</h1>
-            <h1 className="text-center text-xl">Registration Year</h1> */}
                         <h1 className="text text-2xl px-2  font-semibold  border-[#2463eb] border-t h-14 py-2 cursor-pointer hover:text-[#2463eb]  hover:bg-blue-50 mt-10" onClick={() => { navigate('/doctorprofile') }}>Profile</h1>
                         <h1 className="text text-2xl px-2 font-semibold  border-[#2463eb]  border-t h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0" onClick={() => { navigate('/appointment') }}>Appointment</h1>
                         <h1 className="text text-2xl px-2 font-semibold   border-[#2463eb] border-t h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0" onClick={() => { navigate('/changepassword') }}>Change Password</h1>
