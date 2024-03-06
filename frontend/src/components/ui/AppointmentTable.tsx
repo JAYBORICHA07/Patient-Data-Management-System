@@ -77,20 +77,20 @@ const AppointmentTable = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
+              <>
                 {
                     appointmentData?.map((appointment : Appointment) => (
-                       <>
+                       <TableRow>
                             <TableCell>{appointment.status}</TableCell>
                             <TableCell>{appointment.doctorName}</TableCell>
                             <TableCell>{appointment.patientName}</TableCell>
                             <TableCell>{appointment.appointmentDate.toString()}</TableCell>
                             <TableCell>{appointment.appointmentDate.toString()}</TableCell>
                             <TableCell>{appointment.appointmentTime}</TableCell>
-                       </>     
+                       </TableRow>     
                     ))
                 }
-              </TableRow>
+              </>
             </TableBody>
           </Table>
     </div>
