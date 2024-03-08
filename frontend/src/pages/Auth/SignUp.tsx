@@ -81,7 +81,7 @@ return (
         <div className="flex flex-col gap-2 ">
           <form className="text-center mt-2 block h-fit w-80">
             <div>
-              <Label className="block text-sm md:text-lg text-left font-semibold">
+              <Label className="block text-sm text-left font-semibold">
                 User name
               </Label>
               <Input
@@ -93,32 +93,31 @@ return (
               />
             </div>
             <div className="">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
+              <Label className="block text-sm text-left font-semibold mt-3">
                 Email
               </Label>
               <Input
                 type="text"
-                className="p-2 mt-2 border-none md:p-1"
+                className="p-2 mt-3 border-2 bg-blue-50"
                 placeholder="Enter Email"
                 required
                 {...register("email", { required: true })}
               />
             </div>
-            <div className=" border-b-2 border-blue-500 mb-2">
-              <Label className="block text-sm md:text-sm text-left font-semibold my-1 mt-3">
+            <div className="">
+              <Label className="block text-sm text-left font-semibold my-1 mt-3">
                 Mo. Number
               </Label>
               <Input
-
                 type="text"
-                className="p-2 mt-2 border-2 bg-blue-50 md:p-1"
+                className="p-2 mt-3 border-2 bg-blue-50"
                 placeholder="Enter mobile number"
                 required
                 {...register("phoneNumber", { required: true })}
               />
             </div>
-            <div className="text-center block border-b-2 border-blue-500 focus:outline-none">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
+            <div className="">
+              <Label className="block text-sm text-left font-semibold mt-3">
                 Select Role
               </Label>
               <Controller
@@ -126,7 +125,7 @@ return (
                 control={control}
                 render={({ field }) => (
                   <Select {...field} onValueChange={field.onChange}>
-                    <SelectTrigger className=" p-2 mt-2 border-none md:p-1">
+                    <SelectTrigger className="bg-blue-50 p-2 mt-2 border-none md:p-1">
                       <SelectValue placeholder="Select Role" />
                     </SelectTrigger>
                     <SelectContent>
@@ -140,13 +139,13 @@ return (
                 )}
               />
             </div>
-            <div className="text-center  block border-b-2 border-blue-500">
-              <Label className="block text-sm md:text-sm text-left font-semibold mt-3">
+            <div className="">
+              <Label className="block text-sm text-left font-semibold mt-3">
                 Password
               </Label>
               <Input
                 type="password"
-                className="p-2 mt-2 border-none md:p-1"
+                className="p-2 mt-3 border-2 bg-blue-50"
                 placeholder="Enter password"
                 required
                 {...register("password", { required: true })}
