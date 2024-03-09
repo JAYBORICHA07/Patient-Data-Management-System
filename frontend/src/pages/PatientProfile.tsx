@@ -45,6 +45,8 @@ const fetchData = async () => {
       familyMedicalHistory?: string;
       ongoingMedication?: string;
     };
+
+    let route = `profile`;
     const { register, handleSubmit, setValue } = useForm<userType>();
     const navigate = useNavigate();
     const queryClient = useQueryClient()
@@ -69,6 +71,7 @@ const fetchData = async () => {
     
     if(patientData){
       console.log(patientData)
+      route = `profile/update`
       setValue("address", patientData.address)
       setValue("alergies", patientData.alergies)
       setValue("bloodGroup",patientData.bloodGroup)
@@ -100,7 +103,7 @@ const fetchData = async () => {
     };
     // console.log(bodyParameter)
     const result = await axios.post(
-      "http://localhost:8000/api/v1/patient/profile/update",
+      `http://localhost:8000/api/v1/patient/${route}`,
       bodyParameter, 
       config
     );
