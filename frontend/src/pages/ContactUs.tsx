@@ -2,7 +2,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Headset, Mail, MapPinned } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ContactUs() {
 
@@ -23,6 +23,10 @@ function ContactUs() {
   const handleContactUs = () => {
     console.log(user)
   }
+
+  useEffect(()=>{
+    console.log("first")
+  },[])
 
   return (
     <div className="grid grid-cols-1 mt-2 md:grid-cols-2 m-2">

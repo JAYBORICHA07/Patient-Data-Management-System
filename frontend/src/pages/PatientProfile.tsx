@@ -1,37 +1,14 @@
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { checkUser, getToken } from "@/utils/localStorageFunctions";
 import { Label } from "@radix-ui/react-label";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-function PatientProfile() {
-  const [patientData, setPatientData] = useState<userType>()
-
-  type userType = {
-    name: string;
-    email: string;
-    dob: Date;
-    bloodGroup: string;
-    phoneNumber: number;
-    address: string;
-    city: string;
-    state: string;
-    pincode: number;
-    country: string;
-    alergies: string;
-    pastMedicalHistory: string;
-    familyMedicalHistory: string;
-    ongoingMedication: string;
-  };
-
-  const { register, handleSubmit, setValue } = useForm<userType>();
-
-  useEffect(() => {
-  const patientId = checkUser().user.id;
-    const fetchData = async () => {
+const patientId = checkUser()?.user?.id;
+const fetchData = async () => {
         try {
             const authToken = getToken();
             const config = {
@@ -45,37 +22,75 @@ function PatientProfile() {
                bodyParameter,
                config
             );
-            setPatientData(response.data); // Handle response data here
+            return response.data; // Handle response data here
         } catch (error) {
             console.log('Error:', error); // Handle errors here
         }
     };
-    fetchData();
-});
+    
+  function PatientProfile() {
+    type userType = {
+      name: string;
+      email: string;
+      dob: Date;
+      bloodGroup: string;
+      phoneNumber: number;
+      address: string;
+      city: string;
+      state: string;
+      pincode: number;
+      country: string;
+      alergies?: string;
+      pastMedicalHistory?: string;
+      familyMedicalHistory?: string;
+      ongoingMedication?: string;
+    };
+    const { register, handleSubmit, setValue } = useForm<userType>();
+    const navigate = useNavigate();
+    const queryClient = useQueryClient()
 
-useEffect(()=>{
-  if(patientData){
-    setValue("address", patientData.address)
-    setValue("alergies", patientData.alergies)
-    setValue("bloodGroup",patientData.bloodGroup)
-    setValue("city", patientData.city)
-    setValue("country", patientData.country)
-    setValue("dob",patientData.dob)
-    setValue("email",patientData.email)
-    setValue("familyMedicalHistory",patientData?.familyMedicalHistory)
-    setValue("name", patientData.name)
-    setValue("ongoingMedication", patientData.ongoingMedication)
-    setValue("pastMedicalHistory", patientData.pastMedicalHistory)
-    setValue("phoneNumber", patientData.phoneNumber)
-    setValue("pincode", patientData.pincode)
-    setValue("state", patientData.state)
-} 
-},[patientData])
+    const {data: patientData, isLoading, isError} = useQuery<userType>({
+      queryFn : () => fetchData(),
+      queryKey : ["patientData"]
+    })
+    
+    if(isLoading){
+      return <div className="flex items-center justify-center text-5xl">
+        Loading....
+      </div>
+    }
 
-  const navigate = useNavigate();
+    if(isError){
+      return <div className="flex items-center justify-center text-5xl">
+      Something went wrong please reload your page.......
+    </div>
+    }
+    
+    
+    if(patientData){
+      console.log(patientData)
+      setValue("address", patientData.address)
+      setValue("alergies", patientData.alergies)
+      setValue("bloodGroup",patientData.bloodGroup)
+      setValue("city", patientData.city)
+      setValue("country", patientData.country)
+      setValue("dob",patientData.dob)
+      setValue("email",patientData.email)
+      setValue("familyMedicalHistory",patientData?.familyMedicalHistory)
+      setValue("name", patientData.name)
+      setValue("ongoingMedication", patientData.ongoingMedication)
+      setValue("pastMedicalHistory", patientData.pastMedicalHistory)
+      setValue("phoneNumber", patientData.phoneNumber)
+      setValue("pincode", patientData.pincode)
+      setValue("state", patientData.state)
+      setValue("ongoingMedication", patientData.ongoingMedication)
+      setValue("pastMedicalHistory", patientData.pastMedicalHistory)
+      setValue("familyMedicalHistory", patientData.familyMedicalHistory)
+    }
+
 
   const onsubmit: SubmitHandler<userType> = async (data) => {
-    console.log({ patientId, ...data });
+    // console.log(data)
     const authToken = getToken();
     const config = {
       headers: { Authorization: `Bearer ${authToken}` },
@@ -83,19 +98,25 @@ useEffect(()=>{
     const bodyParameter = {
         patientId , ...data,
     };
+    // console.log(bodyParameter)
     const result = await axios.post(
-      "http://localhost:8000/api/v1/patient/profile",
-      bodyParameter,
+      "http://localhost:8000/api/v1/patient/profile/update",
+      bodyParameter, 
       config
     );
     console.log(result);
+    queryClient.invalidateQueries({queryKey : ["patientData"]})
+    alert("Data updated successfully")
   };
+
+
   const onError = (error: unknown) => console.log(error);
+
+
   return (
     <div>
       <div className="flex flex-col md:flex-row rounded-lg p-2 m-3 ">
         <div className="ml-5 border border-r-2 rounded-lg m-2 w-80 row-span-1 mx-10 mt-5">
-          {/*  border border-r-2 rounded-lg m-2 mx-2 max-w-fit */}
           <div className=" m-10 px-5 flex justify-center ">
             <img src="../../public/profile.jfif" alt="profile image"></img>
           </div>
@@ -300,7 +321,6 @@ useEffect(()=>{
             </div>
           </div>
           <div className="flex justify-between items-center gap-2">
-            
             <Button
               className=" p-6 text-xl w-full mb-2 mt-5 "
               type="submit"

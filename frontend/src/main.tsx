@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./index.css";
 import { ThemeProvider } from "./components/theme-provider.tsx";
 import Homepage from "./pages/Homepage.tsx";
@@ -22,8 +23,6 @@ import DoctorDashboard from "./pages/DoctorDashboard.tsx";
 import PatientDashboard from "./pages/PatientDashboard.tsx";
 import ChatBox from "./pages/ChatBox.tsx";
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,72 +38,69 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
+    path: "/contactus",
+    element: <ContactUs />,
+  },
+  {
+    path: "/about",
+    element: <AboutUS />,
+  },
+  // {
+  //   path:'/doctorprofile',
+  //   element:<DoctorProfile/>
+  // },
+  {
+    path: "/patientprofile",
+    element: <PatientProfile />,
+  },
+  // {
+  //   path:'/appointment',
+  //   element: <Appointment/>
 
-    path:'/contactus',
-    element:<ContactUs/>
-  },
-  {
-    path:'/about',
-    element:<AboutUS/>
-  },
-  {
-    path:'/doctorprofile',
-    element:<DoctorProfile/>
-  },
-  {
-    path:'/patientprofile',
-    element:<PatientProfile/>,
-    children : [
-      {
-        path : '/patientprofile/appointment',
-        element : <Appointment />
-      }
-    ]
-  },
-  {
-    path:'/appointment',
-    element: <Appointment/>
+  // },
+  // {
+  //   path:'/appointmentlist',
+  //   element:<AppointmentList/>
+  // },
+  // {
+  //   path:'/appointmentupdate',
+  //   element:<AppointmentUpdate/>
+  // },
+  // {
+  //   path:'/test',
+  //   element:<AppointmentTable />
+  // },
+  // {
+  //   path:'/changepassword',
+  //   element:<ChangePassword/>
+  // },
+  // {
+  //   path:'/doctordashboard',
+  //   element:<DoctorDashboard/>
+  // },
+  // {
+  //   path:'/patientdashboard',
+  //   element: <PatientDashboard/>
+  // },
+  // {
+  //   path:'/chatbox',
+  //   element: <ChatBox/>
 
-  },
-  {
-    path:'/appointmentlist',
-    element:<AppointmentList/>
-  },
-  {
-    path:'/appointmentupdate',
-    element:<AppointmentUpdate/>
-  },
-  {
-    path:'/test',
-    element:<AppointmentTable />
-  },
-  {
-    path:'/changepassword',
-    element:<ChangePassword/>
-  },
-  {
-    path:'/doctordashboard',
-    element:<DoctorDashboard/>
-  },
-  {
-    path:'/patientdashboard',
-    element: <PatientDashboard/>
-  },
-  {
-    path:'/chatbox',
-    element: <ChatBox/>
+  // }
+]);
 
-  }
-])
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <div className="mx-5 flex justify-between flex-col h-screen">
-        <Navbar />
-        <RouterProvider router={router} />
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+        <div className="mx-5 flex justify-between flex-col h-screen">
+          <Navbar />
+          <RouterProvider router={router} />
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
