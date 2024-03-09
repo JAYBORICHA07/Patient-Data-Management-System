@@ -7,6 +7,7 @@ import {
   SubmitHandler,
   useController,
   useForm,
+  FormProvider
 } from "react-hook-form";
 import { checkUser, getToken } from "@/utils/localStorageFunctions";
 import { useEffect, useState } from "react";
@@ -20,10 +21,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "axios";
+import DatePicker from "@/components/DatePicker";
 
 function Appointment() {
-  type userType = {
 
+  const methods = useForm();
+
+  type userType = {
     patientName: string;
     doctorName: string;
     appointmentDate: Date;
@@ -89,6 +93,7 @@ function Appointment() {
 
   const OnError = (error: unknown) => console.log(error);
   return (
+    <FormProvider {...methods}>
     <div className="flex flex-row justify-center">
       <div className="border-2 rounded-xl m-5 shadow-inner border-blue-500  w-fit md:w-2/5 ">
         <div>
@@ -135,12 +140,7 @@ function Appointment() {
             />
           </div>
           <Label className="">Appointment Date</Label>
-          <Input
-            type="date"
-            className="p-2 mt-2 border  border-blue-500 md:p-5"
-            required
-            {...register("appointmentDate", { required: true })}
-          />
+          <DatePicker lable="Choose date for appointment"/>
 
 
           <Label className="">Appointment Time</Label>
@@ -160,6 +160,7 @@ function Appointment() {
         </div>
       </div>
     </div>
+    </FormProvider>
   );
 }
 
