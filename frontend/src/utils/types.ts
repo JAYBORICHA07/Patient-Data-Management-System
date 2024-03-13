@@ -44,3 +44,10 @@ export type ContactUsFormType = {
 export type ChatType={
     text:string
   }
+
+export type AppointmentUserType = {
+  patientName: string;
+  doctorName: string;
+  appointmentDate: Date;
+  appointmentTime: string;
+};
