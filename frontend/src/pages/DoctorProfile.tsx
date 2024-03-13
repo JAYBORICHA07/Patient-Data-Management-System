@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
 import { checkUser, getToken } from "@/utils/localStorageFunctions";
+import { DoctorType } from "@/utils/types";
 import { Label } from "@radix-ui/react-label"
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -10,29 +11,15 @@ import { useNavigate } from "react-router-dom";
 
 function DoctorProfile() {
     const doctorId = checkUser().user.id;
-    const [doctorData, setDoctorData] = useState<UserType>()
+    const [doctorData, setDoctorData] = useState<DoctorType>()
 
-    type UserType = {
-        name:string,
-        email:string,
-        phoneNumber:number,
-        clinicName:string,
-        clinicAddress:string,
-        clinicCity:string;
-        clinicState:string,
-        fees:number,
-        services:string,
-        qualification:string,
-        specialization:string,
-        doctorRegistrationNumber:string,
-        doctorRegistrationYear:string
-    };
+    
 
     const{
         register,
         handleSubmit,
         setValue
-    }= useForm<UserType>();
+    }= useForm<DoctorType>();
 
 
 
@@ -78,7 +65,7 @@ function DoctorProfile() {
 
 
     const navigate = useNavigate()
-    const onsubmit: SubmitHandler<UserType> = async (data)=>
+    const onsubmit: SubmitHandler<DoctorType> = async (data)=>
     {
         console.log({ doctorId, ...data });
         const authToken = getToken();

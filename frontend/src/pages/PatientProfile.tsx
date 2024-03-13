@@ -1,120 +1,92 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { checkUser, getToken } from "@/utils/localStorageFunctions";
-import { Label } from "@radix-ui/react-label";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { PatientType } from "@/utils/types";
+import FormProvider from "../RHF/FormProvider";
+import RHFTextfield from "@/components/ui/RHFTextfield";
+import { useEffect } from "react";
+import FetchData from "@/utils/FetchData";
 
-const patientId = checkUser()?.user?.id;
-const fetchData = async () => {
-        try {
-            const authToken = getToken();
-            const config = {
-                headers: { Authorization: `Bearer ${authToken}` }
-            };
-            const bodyParameter = {
-                patientId : patientId
-            }
+function PatientProfile() {
+  const patientId = checkUser()?.user?.id;
+  let route = `profile`;
 
-            const response = await axios.post('http://localhost:8000/api/v1/patient/profile/getone', 
-               bodyParameter,
-               config
-            );
-            return response.data; // Handle response data here
-        } catch (error) {
-            console.log('Error:', error); // Handle errors here
-        }
-    };
-    
-  function PatientProfile() {
-    type userType = {
-      name: string;
-      email: string;
-      dob: Date;
-      bloodGroup: string;
-      phoneNumber: number;
-      address: string;
-      city: string;
-      state: string;
-      pincode: number;
-      country: string;
-      alergies?: string;
-      pastMedicalHistory?: string;
-      familyMedicalHistory?: string;
-      ongoingMedication?: string;
-    };
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const formMethods = useForm<PatientType>();
+  const { handleSubmit, reset } = formMethods;
 
-    let route = `profile`;
-    const { register, handleSubmit, setValue } = useForm<userType>();
-    const navigate = useNavigate();
-    const queryClient = useQueryClient()
+  const {
+    data: patientData,
+    isLoading,
+    isError,
+  } = useQuery<PatientType>({
+    queryFn:  async () =>  FetchData(),
+    queryKey: ["patientData"],
+  });
 
-    const {data: patientData, isLoading, isError} = useQuery<userType>({
-      queryFn : () => fetchData(),
-      queryKey : ["patientData"]
-    })
-    
-    if(isLoading){
-      return <div className="flex items-center justify-center text-5xl">
+  if (patientData) {
+    route = `profile/update`;
+  }
+
+  useEffect(() => {
+    if (patientData) {
+      reset({
+        address: patientData?.address,
+        alergies: patientData?.alergies,
+        bloodGroup: patientData?.bloodGroup,
+        city: patientData?.city,
+        country: patientData?.country,
+        dob: patientData?.dob,
+        email: patientData?.email,
+        familyMedicalHistory: patientData?.familyMedicalHistory,
+        name: patientData?.name,
+        ongoingMedication: patientData?.ongoingMedication,
+        pastMedicalHistory: patientData?.pastMedicalHistory,
+        phoneNumber: patientData?.phoneNumber,
+        pincode: patientData?.pincode,
+        state: patientData?.state,
+      });
+    }
+  }, [isLoading, patientData, reset]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center text-5xl">
         Loading....
       </div>
-    }
+    );
+  }
 
-    if(isError){
-      return <div className="flex items-center justify-center text-5xl">
-      Something went wrong please reload your page.......
-    </div>
-    }
-    
-    
-    if(patientData){
-      console.log(patientData)
-      route = `profile/update`
-      setValue("address", patientData.address)
-      setValue("alergies", patientData.alergies)
-      setValue("bloodGroup",patientData.bloodGroup)
-      setValue("city", patientData.city)
-      setValue("country", patientData.country)
-      setValue("dob",patientData.dob)
-      setValue("email",patientData.email)
-      setValue("familyMedicalHistory",patientData?.familyMedicalHistory)
-      setValue("name", patientData.name)
-      setValue("ongoingMedication", patientData.ongoingMedication)
-      setValue("pastMedicalHistory", patientData.pastMedicalHistory)
-      setValue("phoneNumber", patientData.phoneNumber)
-      setValue("pincode", patientData.pincode)
-      setValue("state", patientData.state)
-      setValue("ongoingMedication", patientData.ongoingMedication)
-      setValue("pastMedicalHistory", patientData.pastMedicalHistory)
-      setValue("familyMedicalHistory", patientData.familyMedicalHistory)
-    }
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center text-5xl">
+        Something went wrong please reload your page.......
+      </div>
+    );
+  }
 
-
-  const onsubmit: SubmitHandler<userType> = async (data) => {
-    // console.log(data)
+  const onSubmit: SubmitHandler<PatientType> = async (data) => {
     const authToken = getToken();
     const config = {
       headers: { Authorization: `Bearer ${authToken}` },
     };
     const bodyParameter = {
-        patientId , ...data,
+      patientId,
+      ...data,
     };
-    // console.log(bodyParameter)
     const result = await axios.post(
       `http://localhost:8000/api/v1/patient/${route}`,
-      bodyParameter, 
+      bodyParameter,
       config
     );
     console.log(result);
-    queryClient.invalidateQueries({queryKey : ["patientData"]})
-    alert("Data updated successfully")
+    queryClient.invalidateQueries({ queryKey: ["patientData"] });
+    alert("Data updated successfully");
   };
-
-
-  const onError = (error: unknown) => console.log(error);
-
 
   return (
     <div>
@@ -165,174 +137,45 @@ const fetchData = async () => {
             </h1>
           </div>
         </div>
-        <div className="px-2 mx-5">
-          <div className="flex py-1 mt-2 ">
-            <h1 className="text-xl lg:text-5xl font-semibold border-b-4 pb-2  border-blue-500 pt-10 md:pt-2 pr-12 mx-32 ml-0 pl-0  ">
-              Patient Basic Information
-            </h1>
-          </div>
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-5 ">
-            <div>
-              <Label className="">Email</Label>
-              <Input
-                type="email"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter email"
-                required
-                {...register("email", { required: true })}
-              />
+        <FormProvider methods={formMethods} onSubmit={handleSubmit(onSubmit)}>
+          <div className="px-2 mx-5">
+            <div className="flex py-1 mt-2 ">
+              <h1 className="text-xl lg:text-5xl font-semibold border-b-4 pb-2  border-blue-500 pt-10 md:pt-2 pr-12 mx-32 ml-0 pl-0  ">
+                Patient Basic Information
+              </h1>
             </div>
-            <div>
-              <Label className="">Name</Label>
-              <Input
-                type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter name"
-                required
-                {...register("name", { required: true })}
-              />
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-5 ">
+              <RHFTextfield label="Enter Email" name="email" type="email" />
+              <RHFTextfield label="Enter Name" name="name" />
+              <RHFTextfield label="DOB" name="dob" type="date" />
+              <RHFTextfield label="Blood Group" name="bloodGroup" />
+              <RHFTextfield label="Mobile Number" name="phoneNumber" />
+              <RHFTextfield label="Address" name="address" />
+              <RHFTextfield label="City" name="city" />
+              <RHFTextfield label="State" name="state" />
+              <RHFTextfield label="Pincode" name="pincode" type="number" />
+              <RHFTextfield label="Country" name="country" />
             </div>
-            <div>
-              <Label className="">DOB</Label>
-              <Input
-                type="date"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                required
-                {...register("dob", { required: true })}
-              />
+            <div className="rounded-lg mt-3 pt-5">
+              <div>
+                <h4 className="border-b-4 text-2xl  font-semibold pb-2 border-blue-500 w-fit">
+                  Some specification
+                </h4>
+              </div>
+              <div className="grid grid-cols-1 mt-3 ">
+                <RHFTextfield label="Alergies" name="alergies" />
+                <RHFTextfield label="Past Medical History" name="pastMedicalHistory" />
+                <RHFTextfield label="Family Medical History" name="familyMedicalHistory"/>
+                <RHFTextfield label="Ongoing Medicatio" name="ongoingMedication" />
+              </div>
             </div>
-            <div>
-              <Label className="">Blood Group</Label>
-              <Input
-                type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter qualification"
-                required
-                {...register("bloodGroup", { required: true })}
-              />
-            </div>
-            <div>
-              <Label className="">Mobile Number</Label>
-              <Input
-                type="number"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter Mobile Number"
-                required
-                {...register("phoneNumber", { required: true })}
-              />
-            </div>
-            <div>
-              <Label className="">Address</Label>
-              <Input
-                type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter Address"
-                required
-                {...register("address", { required: true })}
-              />
-            </div>
-            <div>
-              <Label className="">City</Label>
-              <Input
-                type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter City"
-                required
-                {...register("city", { required: true })}
-              />
-            </div>
-
-            <div>
-              <Label className="">State</Label>
-              <Input
-                type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter State"
-                required
-                {...register("state", { required: true })}
-              />
-            </div>
-            <div>
-              <Label className="">Pincode</Label>
-              <Input
-                type="number"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter Pincode"
-                required
-                {...register("pincode", { required: true })}
-              />
-            </div>
-            <div>
-              <Label className="">Country</Label>
-              <Input
-                type="text"
-                className="p-2 mt-2 border-2 bg-blue-50  md:p-5"
-                placeholder="Enter Country"
-                required
-                {...register("country", { required: true })}
-              />
+            <div className="flex justify-between items-center gap-2">
+              <Button className=" p-6 text-xl w-full mb-2 mt-5 " type="submit">
+                Update Details
+              </Button>
             </div>
           </div>
-          <div className="rounded-lg mt-3 pt-5">
-            <div>
-              <h4 className="border-b-4 text-2xl  font-semibold pb-2 border-blue-500 w-fit">
-                Some specification
-              </h4>
-            </div>
-            <div className="grid grid-cols-1 mt-3 ">
-              <div>
-                <Label className="">Alergies</Label>
-                <Input
-                  type="text"
-                  className="p-2 mt-2 border-2 bg-blue-50  md:p-5 my-3"
-                  placeholder="Enter if any allergies"
-                  required
-                  {...register("alergies")}
-                />
-              </div>
-              <div>
-                <Label className="">Past Medical History</Label>
-                <Input
-                  type="text"
-                  className="p-2 mt-2 border-2 bg-blue-50  md:p-5 my-3"
-                  placeholder="Enter Past Medical History"
-                  required
-                  {...register("pastMedicalHistory")}
-                />
-              </div>
-              <div>
-                <Label className="">Family Medical History</Label>
-                <Input
-                  type="text"
-                  className="p-2 mt-2 border-2 bg-blue-50  md:p-5 my-3"
-                  placeholder="Enter Any medical history of your family"
-                  required
-                  {...register("familyMedicalHistory")}
-                />
-              </div>
-              <div>
-                <Label className="">Ongoing Medication</Label>
-                <Input
-                  type="text"
-                  className="p-2 mt-2 border-2 bg-blue-50  md:p-5 mb-3"
-                  placeholder="Enter current medication detail"
-                  required
-                  {...register("ongoingMedication")}
-                />
-              </div>
-
-            </div>
-          </div>
-          <div className="flex justify-between items-center gap-2">
-            <Button
-              className=" p-6 text-xl w-full mb-2 mt-5 "
-              type="submit"
-              onClick={handleSubmit(onsubmit, onError)}
-            >
-              Update Details
-            </Button>
-          </div>
-        </div>
+        </FormProvider>
       </div>
     </div>
   );

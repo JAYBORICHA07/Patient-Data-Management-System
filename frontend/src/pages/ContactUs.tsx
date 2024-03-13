@@ -2,18 +2,13 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Headset, Mail, MapPinned } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { ContactUsFormType } from "@/utils/types";
 
 function ContactUs() {
 
-  type userType = {
-    name: string;
-    email: string;
-    service: string;
-    phoneNo: number | null;
-    message: string
-  } 
-  const [user, setUser] = useState<userType>({
+  
+  const [user, setUser] = useState<ContactUsFormType>({
     name: '',
     email: '',
     service: '',
@@ -23,10 +18,6 @@ function ContactUs() {
   const handleContactUs = () => {
     console.log(user)
   }
-
-  useEffect(()=>{
-    console.log("first")
-  },[])
 
   return (
     <div className="grid grid-cols-1 mt-2 md:grid-cols-2 m-2">

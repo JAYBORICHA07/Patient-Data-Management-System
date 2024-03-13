@@ -22,7 +22,7 @@ import ChangePassword from "./pages/Auth/ChangePassword.tsx";
 import DoctorDashboard from "./pages/DoctorDashboard.tsx";
 import PatientDashboard from "./pages/PatientDashboard.tsx";
 import ChatBox from "./pages/ChatBox.tsx";
-import PAtientProfileUPdated from "./pages/PAtientProfileUPdated.tsx";
+import PatientProfileUPdated from "./pages/PatientProfileUPdated.tsx";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
   },
   {
     path : 'test',
-    element : <PAtientProfileUPdated />
+    element : <PatientProfileUPdated />
   }
   // {
   //   path:'/appointmentlist',

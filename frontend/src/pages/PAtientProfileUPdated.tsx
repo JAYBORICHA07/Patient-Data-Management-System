@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserRound } from "lucide-react";
 import PatientProfile from "./PatientProfile";
 
-const PAtientProfileUPdated = () => {
+const PatientProfileUPdated = () => {
   return (
     <div className="w-full h-screen">
       <Tabs
@@ -54,4 +54,4 @@ const PAtientProfileUPdated = () => {
   );
 };
 
-export default PAtientProfileUPdated;
+export default PatientProfileUPdated;

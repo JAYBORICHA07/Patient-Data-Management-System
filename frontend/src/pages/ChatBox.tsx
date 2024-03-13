@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { ChatType } from "@/utils/types";
 import { Send } from "lucide-react"
 import { SubmitHandler, useForm } from "react-hook-form"
 
 function ChatBox() {
 
-  type ChatType={
-    text:string
-  }
+  
   const{register,handleSubmit} = useForm<ChatType>();
 
   const onSubmit: SubmitHandler<ChatType> = async(data: ChatType)=>{
