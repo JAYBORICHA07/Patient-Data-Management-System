@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 export default function Homepage() {
   const navigate = useNavigate()
+  
   return (
     <main>
       <section className="mt-5 mx-5">

@@ -54,8 +54,6 @@ function DoctorProfile() {
                     setValue("services", doctorData.services)
                     setValue("specialization", doctorData.specialization)
                 } 
-                
-                
             } catch (error) {
                 console.log('Error:', error); // Handle errors here
             }
