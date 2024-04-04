@@ -21,7 +21,6 @@ import AppointmentTable from "./components/ui/AppointmentTable.tsx";
 import ChangePassword from "./pages/Auth/ChangePassword.tsx";
 import DoctorDashboard from "./pages/DoctorDashboard.tsx";
 import PatientDashboard from "./pages/PatientDashboard.tsx";
-import ChatBox from "./pages/ChatBox.tsx";
 import PatientProfileUPdated from "./pages/PatientProfileUPdated.tsx";
 
 const router = createBrowserRouter([
@@ -46,51 +45,46 @@ const router = createBrowserRouter([
     path: "/about",
     element: <AboutUS />,
   },
-  // {
-  //   path:'/doctorprofile',
-  //   element:<DoctorProfile/>
-  // },
+  {
+    path:'/doctorprofile',
+    element:<DoctorProfile/>
+  },
   {
     path: "/patientprofile",
     element: <PatientProfile />,
   },
   {
-    path:'/appointment',
+    path:'/bookAppointment',
     element: <Appointment/>
   },
   {
-    path : 'test',
+    path : 'testt',
     element : <PatientProfileUPdated />
-  }
-  // {
-  //   path:'/appointmentlist',
-  //   element:<AppointmentList/>
-  // },
-  // {
-  //   path:'/appointmentupdate',
-  //   element:<AppointmentUpdate/>
-  // },
-  // {
-  //   path:'/test',
-  //   element:<AppointmentTable />
-  // },
-  // {
-  //   path:'/changepassword',
-  //   element:<ChangePassword/>
-  // },
-  // {
-  //   path:'/doctordashboard',
-  //   element:<DoctorDashboard/>
-  // },
-  // {
-  //   path:'/patientdashboard',
-  //   element: <PatientDashboard/>
-  // },
-  // {
-  //   path:'/chatbox',
-  //   element: <ChatBox/>
-
-  // }
+  },
+  {
+    path:'/appointmentlist',
+    element:<AppointmentList/>
+  },
+  {
+    path:'/appointmentupdate',
+    element:<AppointmentUpdate/>
+  },
+  {
+    path:'/test',
+    element:<AppointmentTable />
+  },
+  {
+    path:'/changepassword',
+    element:<ChangePassword/>
+  },
+  {
+    path:'/doctordashboard',
+    element:<DoctorDashboard/>
+  },
+  {
+    path:'/patientdashboard',
+    element: <PatientDashboard/>
+  },
 ]);
 
 const queryClient = new QueryClient();

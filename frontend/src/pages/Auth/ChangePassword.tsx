@@ -1,18 +1,22 @@
+import FormProvider from "@/RHF/FormProvider";
+import RHFTextfield from "@/components/ui/RHFTextfield";
 import { Button } from "@/components/ui/button";
-import { Input, } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
 
 function ChangePassword() {
     type userType = {
-        newPassword:String,
-        oldPassword:String,
-        confirmPassword:String,
+        newPassword:string,
+        oldPassword:string,
+        confirmPassword:string,
       }
-      const{
-        register,handleSubmit}= useForm< userType>();
+      const formMethods = useForm<userType>();
+
+      const { handleSubmit } = formMethods
+
+
+    
       const OnSubmit:  SubmitHandler<userType> = async(data)=>{
             console.log(data);
             if(data){
@@ -27,35 +31,21 @@ function ChangePassword() {
             <div>
                 <h1 className="text-3xl mx-7 mt-5 border-b-2 w-fit border-blue-500">Change Password</h1>
             </div>
+            <FormProvider methods={formMethods} onSubmit={handleSubmit(OnSubmit)}>
             <div className="m-5 p-2 mt-3 mb-3">
-                <Label className="">Old Password</Label>
-                <Input
-                type="password"
-                className="p-2 mt-2 border border-blue-500  md:p-5"
-                placeholder="Enter old"
-                required 
-                {...register("oldPassword",{required:true})} />
-
-                <Label className="">New Password</Label>
-                <Input
-                type="password"
-                className="p-2 mt-2 border border-blue-500 md:p-5"
-                placeholder="Enter new"
-                required
-                {...register("newPassword",{required:true})} />
-
-                <Label className="">Confirm Password</Label>
-                <Input
-                type="password"
-                className="p-2 mt-2 border border-blue-500  md:p-5"
-                placeholder="enter for confirmation"
-                required 
-                {...register("confirmPassword",{required:true})} />
-
+                <RHFTextfield 
+                    name="oldPassword"
+                    label="Old Password"
+                />
+                <RHFTextfield 
+                    name="newPassword"
+                    label="New Password"
+                />
                 <Button 
                 className="p-2 mt-4 md:p-5 w-full mb-3 "
                 onClick={handleSubmit(OnSubmit,OnError)}>Change Password</Button>
             </div>
+            </FormProvider>
         </div>
     </div>
   )

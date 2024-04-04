@@ -27,9 +27,10 @@ const DoctorprofileController = async (req, res) => {
 }
 
 const DoctorprofileUpdateController = async (req, res) => {
-    const { id, email, name, dob, bloodGroup, phoneNumber, address, city, state, pincode, country, alergies } = req.body
-    console.log({ id, email, name, phoneNumber, qualification, specialization, clinicName, clinicAddress, clinicCity, clinicState, fees, services, doctorRegistrationNumber, doctorRegistrationYear })
+    const { doctorId ,email, name, phoneNumber, qualification, specialization, clinicName, clinicAddress, clinicCity, clinicState, fees, services, doctorRegistrationNumber, doctorRegistrationYear } = req.body
+    console.log({doctorId, email, name, phoneNumber, qualification, specialization, clinicName, clinicAddress, clinicCity, clinicState, fees, services, doctorRegistrationNumber, doctorRegistrationYear })
     const { data, error } = await supabase.from('doctors').update({
+        doctorId,
         email,
         name,
         phoneNumber,
@@ -43,7 +44,7 @@ const DoctorprofileUpdateController = async (req, res) => {
         services,
         doctorRegistrationNumber,
         doctorRegistrationYear
-    }).eq({id: id}).select()
+    }).eq('doctorId',doctorId).select()
     if (error) {
         res.send(error)
     } else {
@@ -59,7 +60,7 @@ const getOneDoctorProfile = async ( req , res ) => {
         console.log(error)
         res.status(404).send(error)
     }else{
-        console.log(data)
+        // console.log(data)
         res.send(data[0])
     }
 

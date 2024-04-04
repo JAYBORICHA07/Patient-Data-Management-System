@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getToken } from "@/utils/localStorageFunctions";
 import { checkUser } from "@/utils/localStorageFunctions";
+import { Badge } from "@/components/ui/badge"
 import {
   Table,
   TableBody,
@@ -81,7 +82,7 @@ const AppointmentTable = () => {
                 {
                     appointmentData?.map((appointment : Appointment) => (
                        <TableRow>
-                            <TableCell>{appointment.status}</TableCell>
+                            <TableCell><Badge className={appointment.status == "PENDING" ? "bg-red-600" : "bg-green-600"}>{appointment?.status}</Badge></TableCell>
                             <TableCell>{appointment.doctorName}</TableCell>
                             <TableCell>{appointment.patientName}</TableCell>
                             <TableCell>{appointment.appointmentDate.toString()}</TableCell>

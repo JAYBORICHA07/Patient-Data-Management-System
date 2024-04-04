@@ -24,8 +24,8 @@ const RHFTextfield = ({
       control={control}
       defaultValue={defaultValue || defaultValue == 0 ? defaultValue : ""}
       render={({ field }) => (
-        <div>
-          <Label className="">{label}</Label>
+        <div className="m-2">
+          <Label className=" text-lg">{label}</Label>
           <Input
             {...field}
             type={type}

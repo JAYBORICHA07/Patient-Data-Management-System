@@ -114,7 +114,7 @@ function PatientProfile() {
             <h1
               className="text text-2xl px-2 font-semibold  border-t-2 h-14 py-2 cursor-pointer hover:text-[#2463eb] hover:bg-blue-50  mt-0"
               onClick={() => {
-                navigate("/appointment");
+                navigate("/bookAppointment");
               }}
             >
               Appointment
@@ -144,7 +144,7 @@ function PatientProfile() {
                 Patient Basic Information
               </h1>
             </div>
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-5 ">
+            <div className="grid md:grid-cols-2 grid-cols-1 mt-5 ">
               <RHFTextfield label="Enter Email" name="email" type="email" />
               <RHFTextfield label="Enter Name" name="name" />
               <RHFTextfield label="DOB" name="dob" type="date" />
